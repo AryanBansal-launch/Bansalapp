@@ -82,12 +82,14 @@ export default function Navbar({ image }: NavbarProps) {
   return (
     <nav className={styles.navbar}>
       {/* Logo */}
+      <Link href="/">
       <img
         src={image || (data?.logo?.url ?? '/default-logo.png')}
         alt="Logo"
-        width={100}
+        width={50}
         height={50}
       />
+      </Link>
 
       {/* Hamburger Menu Icon for Mobile */}
       <div
