@@ -1,20 +1,21 @@
 import styles from '../../styles/about.module.css';
+import Link from 'next/link';
 
 export default function About() {
   return (
     <div className={styles.main}>
       {/* Greeting Section */}
-      <h1>Welcome to My Portfolio</h1>
+      <h1 className="h1">Welcome to My Portfolio</h1>
 
       {/* About Description Section */}
       <section className={styles.aboutSection}>
-        <h2>About Me</h2>
+        <h2 className="h2">About Me</h2>
         <p>This is where you describe yourself and your journey.</p>
       </section>
 
       {/* Education Section */}
-      <section className={styles.educationSection}>
-        <h2>Education</h2>
+      <section className={styles.educationSection} id="section">
+        <h2 className="h2">Education</h2>
         <div className={styles.educationBox}>
           <h3>Bachelor of Science in Computer Science</h3>
           <p>University of XYZ</p>
@@ -30,27 +31,27 @@ export default function About() {
       </section>
 
       {/* Certifications Section */}
-      <section className={styles.certificationsSection}>
-        <h2>Certifications</h2>
+      <section className={styles.certificationsSection} id="section">
+        <h2 className="h2">Certifications</h2>
         <div className={styles.certificationBox}>
           <h3>Certified Data Analyst</h3>
           <p>Certifying Authority: Data Institute</p>
           <p>Domain: Data Analysis</p>
           <p>Date of Certification: June 2021</p>
-          <a href="https://example.com/certificate" target="_blank" rel="noopener noreferrer">View Certificate</a>
+          <Link  className="a" href="https://example.com/certificate" target="_blank" rel="noopener noreferrer">View Certificate</Link>
         </div>
         <div className={styles.certificationBox}>
           <h3>Full Stack Developer Certification</h3>
           <p>Certifying Authority: Code Academy</p>
           <p>Domain: Web Development</p>
           <p>Date of Certification: March 2020</p>
-          <a href="https://example.com/certificate" target="_blank" rel="noopener noreferrer">View Certificate</a>
+          <Link  className="a" href="https://example.com/certificate" target="_blank" rel="noopener noreferrer">View Certificate</Link>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section className={styles.experienceSection}>
-        <h2>Experience</h2>
+      <section className={styles.experienceSection} id="section">
+        <h2 className="h2">Experience</h2>
         <div className={styles.experienceBox}>
           <h3>Software Engineer</h3>
           <p>Company: Tech Solutions</p>

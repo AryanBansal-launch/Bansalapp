@@ -1,0 +1,46 @@
+.banner {
+    position: relative;
+    background-image: url('/images/banner-bg.jpg'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .resumeButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .resumeButton:hover {
+    background-color: #005bb5;
+  }
+  

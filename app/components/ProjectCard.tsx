@@ -1,4 +1,4 @@
-import styles from '../../styles/projectCard.module.css';
+import styles from '../../styles/projectcard.module.css';
 
 interface ProjectCardProps {
   title: string;
