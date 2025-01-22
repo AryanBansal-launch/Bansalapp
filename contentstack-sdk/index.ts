@@ -13,6 +13,13 @@ type GetEntry = {
   jsonRtePath: string[] | undefined;
 };
 
+type GetEntryById = {
+  contentTypeUid: string;
+  entryId: string;
+  referenceFieldPath: string[] | undefined;
+  jsonRtePath: string[] | undefined;
+};
+
 type GetEntryByUrl = {
   entryUrl: string | undefined;
   contentTypeUid: string;
@@ -20,12 +27,21 @@ type GetEntryByUrl = {
   jsonRtePath: string[] | undefined;
 };
 
-const { publicRuntimeConfig } = getConfig();
-const envConfig = process.env.CONTENTSTACK_API_KEY
-  ? process.env
-  : publicRuntimeConfig;
+// const envConfig = process.env;
+const {
+  NEXT_PUBLIC_CONTENTSTACK_API_KEY,
+  NEXT_PUBLIC_CONTENTSTACK_DELIVERY_TOKEN,
+  NEXT_PUBLIC_CONTENTSTACK_ENVIRONMENT,
+  NEXT_PUBLIC_CONTENTSTACK_BRANCH,
+  NEXT_PUBLIC_CONTENTSTACK_REGION,
+  NEXT_PUBLIC_CONTENTSTACK_PREVIEW_TOKEN,
+  NEXT_PUBLIC_CONTENTSTACK_PREVIEW_HOST,
+  NEXT_PUBLIC_CONTENTSTACK_APP_HOST,
+  NEXT_PUBLIC_CONTENTSTACK_LIVE_PREVIEW,
+} = process.env;
 
-let customHostBaseUrl = envConfig.CONTENTSTACK_API_HOST as string;
+
+let customHostBaseUrl = process.env.NEXT_APP_CONTENTSTACK_API_HOST as string;
 
 customHostBaseUrl = customHostBaseUrl? customHostUrl(customHostBaseUrl): '';
 
@@ -42,7 +58,7 @@ ContentstackLivePreview.init({
   //@ts-ignore
   stackSdk: Stack,
   clientUrlParams:{
-    host: envConfig.CONTENTSTACK_APP_HOST,
+    host: process.env.NEXT_APP_CONTENTSTACK_APP_HOST as string,
   },
   ssr:false,
 })?.catch((err) => console.error(err));
@@ -61,6 +77,8 @@ const renderOption = {
  * @param {* Json RTE path} jsonRtePath
  *
  */
+
+//GET ANY ENTRY
 export const getEntry = ({
   contentTypeUid,
   referenceFieldPath,
@@ -68,7 +86,9 @@ export const getEntry = ({
 }: GetEntry) => {
   return new Promise((resolve, reject) => {
     const query = Stack.ContentType(contentTypeUid).Query();
+    console.log("query", query);
     if (referenceFieldPath) query.includeReference(referenceFieldPath);
+    // console.log(query.toJSON().find());
     query
       .toJSON()
       .find()
@@ -89,6 +109,38 @@ export const getEntry = ({
   });
 };
 
+//GET EBTRY BY ID
+export const getEntryById = ({
+  contentTypeUid,
+  entryId,
+  referenceFieldPath,
+  jsonRtePath,
+}: GetEntryById): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    const query = Stack.ContentType(contentTypeUid).Entry(entryId).toJSON();
+
+    if (referenceFieldPath) {
+      query.includeReference(referenceFieldPath);
+    }
+
+    query
+      .fetch()
+      .then((result) => {
+        if (jsonRtePath) {
+          Utils.jsonToHTML({
+            entry: result,
+            paths: jsonRtePath,
+            renderOption,
+          });
+        }
+        resolve(result);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 /**
  *fetches specific entry from a content-type
  *
@@ -98,6 +150,9 @@ export const getEntry = ({
  * @param {* Json RTE path} jsonRtePath
  * @returns
  */
+
+
+ //GET EBTRY BY URL
 export const getEntryByUrl = ({
   contentTypeUid,
   entryUrl,

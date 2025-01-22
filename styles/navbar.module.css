@@ -56,30 +56,30 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px 30px;
-    background-color: #1c1c1c; /* Darker background for modern appearance */
+    background-color: #1c1c1c; 
     color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Deeper shadow for more contrast */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
     position: sticky;
     top: 0;
-    z-index: 1000; /* Ensure it stays on top */
+    z-index: 1000; 
     transition: all 0.3s ease;
   }
   
   .navbar img {
     cursor: pointer;
-    border-radius: 5px; /* Rounded corners for a softer look */
+    border-radius: 5px; 
     object-fit: contain;
     transition: transform 0.3s ease;
   }
   
   .navbar img:hover {
-    transform: scale(1.1); /* Slight zoom effect for interactivity */
+    transform: scale(1.1); 
   }
   
   .navbar-links {
     display: flex;
     align-items: center;
-    gap: 20px; /* Space between links */
+    gap: 20px; 
   }
   
   .navbar a {
