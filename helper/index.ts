@@ -171,3 +171,14 @@ export const getconatctRes = async (entryUrl: string): Promise<Page> => {
   })) as Page[];
   return response[0];
 };
+
+//getting the home page banner
+export const gethomeRes = async (entryUrl: string): Promise<Page> => {
+  const response = (await getEntryByUrl({
+    contentTypeUid: "common_page",
+    entryUrl:"/",
+    referenceFieldPath: undefined,
+    jsonRtePath: undefined
+  })) as Page[];
+  return response[0];
+};

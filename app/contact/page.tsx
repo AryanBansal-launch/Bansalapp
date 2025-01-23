@@ -59,10 +59,8 @@ export default function Contact() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Simple alert to confirm submission
     alert('Thank you for your message! We will get back to you soon.');
 
-    // Reset the form fields
     e.currentTarget.reset();
   };
 
