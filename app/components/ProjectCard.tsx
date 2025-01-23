@@ -3,29 +3,31 @@ import styles from '../../styles/projectcard.module.css';
 interface ProjectCardProps {
   title: string;
   description: string;
-  codelink?: string;
-    demolink?: string;
-    image?: string;
+  image: string;
+  codelink: string;
+  demolink: string;
 }
 
-export default function ProjectCard({ title, description,image,demolink,codelink }: ProjectCardProps) {
+export default function ProjectCard({ title, description, image, codelink, demolink }: ProjectCardProps) {
   return (
     <div className={styles.card}>
-        <div className={styles.image}>
-            <img src={image} alt="project image" width={400} height={300} />
+      <div className={styles.image}>
+        <img src={image} alt={`${title} project image`} width={400} height={300} />
+      </div>
+      <div className={styles.content}>
+        <h2>{title}</h2>
+        <p>{description}</p>
+        <div className={styles.links}>
+          <a href={codelink} target="_blank" rel="noreferrer">
+            {/* <img src="/github.svg" alt="GitHub" width={20} height={20} /> */}
+            <button className={styles.button}>View Code</button>
+          </a>
+          <a href={demolink} target="_blank" rel="noreferrer">
+            {/* <img src="/netlify.svg" alt="Netlify" width={20} height={20} /> */}
+            <button className={styles.button}>View Live</button>
+          </a>
         </div>
-        <div className={styles.content}>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <div className={styles.links}>
-                <a href={codelink} target="_blank" rel="noreferrer">
-                    <img src="/github.svg" alt="github" width={20} height={20} />
-                </a>
-                <a href={demolink} target="_blank" rel="noreferrer">
-                    <img src="/netlify.svg" alt="netlify" width={20} height={20} />
-                </a>
-            </div>
-            </div>
-        </div>
+      </div>
+    </div>
   );
 }

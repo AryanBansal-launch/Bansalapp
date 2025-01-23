@@ -18,8 +18,8 @@ interface NavigationLink {
 
 interface SocialLink {
   title: string;
-  href: string;
-  icon: string;
+  link: {href:string};
+  icon: {url:string};
 }
 
 export interface Footerschema {
@@ -104,15 +104,33 @@ export const getAboutRes = async (entryUrl: string): Promise<Page> => {
 };
 
 //for getting Projects page
-export const getProjectsRes = async (entryUrl: string): Promise<Page> => {
-  const response = (await getEntryByUrl({
+export const getProjectsRes = async (entryUrl: string): Promise<any> => {
+  const response = await getEntryByUrl({
     contentTypeUid: "common_page",
-    entryUrl:"/projects",
+    entryUrl: entryUrl,
     referenceFieldPath: undefined,
-    jsonRtePath: undefined
-  })) as Page[];
-  return response[0];
+    jsonRtePath: undefined,
+  });
+
+  const data = (response as any[])[0]; // Assuming the first entry contains your desired data
+  console.log("projects Data from backend:", data);
+  return data.page_components[0].project.projects.map((project: any) => ({
+    project_title: project.project_title,
+    project_description: project.project_description,
+    project_thumbnail: project.project_thumbnail.url,
+    links: {
+      code_link: {
+        title: project.links.code_link.title,
+        href: project.links.code_link.href,
+      },
+      deployed_project_link: {
+        title: project.links.deployed_project_link.title,
+        href: project.links.deployed_project_link.href,
+      },
+    },
+  }));
 };
+
 
 //get footer again
 export const getFooter = async (): Promise<Footerschema> => {
