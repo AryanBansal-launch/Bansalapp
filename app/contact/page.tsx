@@ -72,7 +72,7 @@ export default function Contact() {
 
   return (
     <div className={styles.main}>
-      <h1 className="h1">Contact Me</h1>
+      <h1 className="h1">Reach Out to Me!</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input type="text" placeholder="Your Name" required />
         <input type="email" placeholder="Your Email" required />
@@ -95,7 +95,8 @@ export default function Contact() {
         <div className={styles.social}>
           {contactData.social_links.social_link.map((link, index) => (
             <Link key={index} href={link.social_link_url.href} passHref>
-              <img src={link.social_link_url.title} alt={link.social_link_url.title} />
+              {/* <img src={link.social_link_url.title} alt={link.social_link_url.title} /> */}
+              <p>{link.social_link_url.title}</p>
             </Link>
           ))}
         </div>
