@@ -58,19 +58,18 @@ interface NavigationLink {
 
 interface SocialLink {
   title: string;
-  href: string;
-  icon: string;
+  link: {href:string};
+  icon: {url:string};
 }
-
-interface FooterProps {
+interface Footerschema {
   navigation: NavigationLink[];
   social: SocialLink[];
-  logo: {url:string};
+  logo:{url:string};
   copyright?: string;
 }
 
 export default function Footer() {
-  const [footerData, setFooterData] = useState<FooterProps | null>(null);
+  const [footerData, setFooterData] = useState<Footerschema | null>(null);
 
   useEffect(() => {
     async function fetchFooterData() {
@@ -96,8 +95,7 @@ export default function Footer() {
       <div className={styles.container}>
         {/* Logo */}
         <div className={styles.logo}>
-          <img src={logo.url} alt="Logo"width={50}
-        height={50} />
+          <img src={logo.url} alt="Logo" width={50} height={50} />
         </div>
 
         {/* Navigation Links */}

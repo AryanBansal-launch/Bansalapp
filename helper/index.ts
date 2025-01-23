@@ -22,7 +22,7 @@ interface SocialLink {
   icon: string;
 }
 
-interface Footerschema {
+export interface Footerschema {
   navigation: NavigationLink[];
   social: SocialLink[];
   logo: string;
