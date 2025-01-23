@@ -19,7 +19,7 @@
 import styles from '../../styles/projects.module.css';
 import ProjectCard from '../components/ProjectCard';
 import { getProjectsRes } from '@/helper'; // Assuming getProjectsRes fetches data
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Key } from 'react';
 
 interface Link {
   href: string;
@@ -36,6 +36,7 @@ interface Project {
 }
 
 interface ProjectsProps {
+  map(arg0: (project: { project_title: string; project_description: string; project_thumbnail: string; links: { code_link: { href: string; }; deployed_project_link: { href: string; }; }; }, index: Key | null | undefined) => import("react").JSX.Element): import("react").ReactNode;
   projects: Project[];
 }
 
@@ -63,7 +64,7 @@ const Projects = () => {
     <div className={styles.main}>
       <h1 className="h1">My Projects</h1>
       <div className={styles.grid}>
-        {projectData.map((project, index) => (
+        {projectData.map((project: { project_title: string; project_description: string; project_thumbnail: string; links: { code_link: { href: string; }; deployed_project_link: { href: string; }; }; }, index: Key | null | undefined) => (
           <ProjectCard
             key={index}
             title={project.project_title}

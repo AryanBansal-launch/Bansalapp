@@ -28,6 +28,7 @@ export interface Footerschema {
   logo: string;
   copyright?: string;
 }
+
 //For navbar
 export const getHeaderRes = async (): Promise<HeaderProps> => {
   const response = (await getEntry({
@@ -158,4 +159,15 @@ export const getFooter = async (): Promise<Footerschema> => {
     console.error("Error fetching footer data:", error);
     throw error; // Throw the error so it can be handled in the component
   }
+};
+
+//getting the contact page
+export const getconatctRes = async (entryUrl: string): Promise<Page> => {
+  const response = (await getEntryByUrl({
+    contentTypeUid: "common_page",
+    entryUrl:"/contact",
+    referenceFieldPath: undefined,
+    jsonRtePath: undefined
+  })) as Page[];
+  return response[0];
 };

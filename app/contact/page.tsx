@@ -1,11 +1,79 @@
+'use client';
 import Link from 'next/link';
 import styles from '../../styles/contact.module.css';
+import { getconatctRes } from '@/helper';
+import { useState, useEffect, FormEvent } from 'react';
+
+interface Icon {
+  url: string;
+}
+
+interface Address {
+  icon: Icon;
+  address: string;
+}
+
+interface Phone {
+  icon: Icon;
+  phone_no_: string;
+}
+
+interface Email {
+  icon: Icon;
+  email_address: string;
+}
+
+interface SocialLink {
+  social_link_url: {
+    title: string;
+    href: string;
+  };
+}
+
+interface SocialLinks {
+  social_link: SocialLink[];
+}
+
+interface Contact {
+  address: Address;
+  phone_details: Phone;
+  email_details: Email;
+  social_links: SocialLinks;
+}
 
 export default function Contact() {
+  const [contactData, setContactData] = useState<Contact | null>(null);
+
+  useEffect(() => {
+    async function fetchContactData() {
+      try {
+        const response = await getconatctRes('/contact');
+        setContactData(response.page_components[0].contact_details);
+      } catch (error) {
+        console.error('Error fetching contact data:', error);
+      }
+    }
+    fetchContactData();
+  }, []);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Simple alert to confirm submission
+    alert('Thank you for your message! We will get back to you soon.');
+
+    // Reset the form fields
+    e.currentTarget.reset();
+  };
+
+  if (!contactData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={styles.main}>
-      <h1 className='h1'>Contact Me</h1>
-      <form className={styles.form}>
+      <h1 className="h1">Contact Me</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input type="text" placeholder="Your Name" required />
         <input type="email" placeholder="Your Email" required />
         <textarea placeholder="Your Message" required></textarea>
@@ -13,29 +81,27 @@ export default function Contact() {
       </form>
       <div className={styles.info}>
         <div className={styles.detail}>
-          <img src="/address-icon.svg" alt="Address" />
-          <p>123 Main Street, Your City, Your Country</p>
+          <img src={contactData.address.icon.url} alt="Address Icon" />
+          <p>{contactData.address.address}</p>
         </div>
         <div className={styles.detail}>
-          <img src="/phone-icon.svg" alt="Phone" />
-          <p>+123 456 7890</p>
+          <img src={contactData.phone_details.icon.url} alt="Phone Icon" />
+          <p>{contactData.phone_details.phone_no_}</p>
         </div>
         <div className={styles.detail}>
-          <img src="/email-icon.svg" alt="Email" />
-          <p>yourname@example.com</p>
+          <img src={contactData.email_details.icon.url} alt="Email Icon" />
+          <p>{contactData.email_details.email_address}</p>
         </div>
         <div className={styles.social}>
-          <Link href="https://github.com" passHref>
-            <img src="/github.svg" alt="GitHub" />
-          </Link>
-          <Link href="https://linkedin.com" passHref>
-            <img src="/linkedin.svg" alt="LinkedIn" />
-          </Link>
-          <Link href="https://twitter.com" passHref>
-            <img src="/twitter.svg" alt="Twitter" />
-          </Link>
+          {contactData.social_links.social_link.map((link, index) => (
+            <Link key={index} href={link.social_link_url.href} passHref>
+              <img src={link.social_link_url.title} alt={link.social_link_url.title} />
+            </Link>
+          ))}
         </div>
       </div>
     </div>
   );
 }
+
+
