@@ -66,3 +66,12 @@ export const getPageRes = async (entryUrl: string): Promise<Page> => {
 };
 
 //for getting skills page
+export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
+  const response = (await getEntryByUrl({
+    contentTypeUid: "common_page",
+    entryUrl:"/skills",
+    referenceFieldPath: undefined,
+    jsonRtePath: undefined
+  })) as Page[];
+  return response[0];
+};

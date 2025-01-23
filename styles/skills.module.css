@@ -1,0 +1,47 @@
+/* skills.module.css
+
+.skillsPage {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .skillsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+  }
+   */
+
+   /* skills.module.css */
+
+.skillsPage {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .skillsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+    gap: 2rem;
+    justify-content: center; 
+    align-items: center;
+    padding: 1rem;
+  }
+  
