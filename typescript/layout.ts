@@ -108,7 +108,7 @@ export type PageProps = {
 }
 
 export type FooterProps = {
-  logo: Image;
+  logo: any;
   title: string;
   social: Social;
   navigation: Navigation;
