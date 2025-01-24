@@ -1,6 +1,6 @@
 import * as Utils from "@contentstack/utils";
 import ContentstackLivePreview from "@contentstack/live-preview-utils";
-import getConfig from "next/config";
+// import getConfig from "next/config";
 import {
   customHostUrl,
   initializeContentStackSdk,
