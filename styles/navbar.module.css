@@ -147,4 +147,17 @@
       margin-top: 10px;
     }
   }
+  .activeLink {
+    color: #007bff;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .activeLink:hover {
+    color: #0056b3;
+    border-color: #0056b3;
+  }
+  
   

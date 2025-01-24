@@ -1,11 +1,11 @@
-
 "use client";
 
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import styles from '../../styles/navbar.module.css';
-import { getHeaderRes } from '@/helper';
-import { HeaderProps } from '@/typescript/layout';
+import Link from "next/link";
+import { usePathname } from "next/navigation"; // Import usePathname hook
+import { useState, useEffect } from "react";
+import styles from "../../styles/navbar.module.css";
+import { getHeaderRes } from "@/helper";
+import { HeaderProps } from "@/typescript/layout";
 
 interface NavbarProps {
   image?: string;
@@ -14,6 +14,7 @@ interface NavbarProps {
 export default function Navbar({ image }: NavbarProps) {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [data, setData] = useState<HeaderProps | null>(null);
+  const pathname = usePathname(); // Get the current pathname
 
   // Fetch header information
   async function getHeaderInfo() {
@@ -21,7 +22,7 @@ export default function Navbar({ image }: NavbarProps) {
       const res = await getHeaderRes();
       setData(res);
     } catch (err) {
-      console.error('Error fetching header data:', err);
+      console.error("Error fetching header data:", err);
     }
   }
 
@@ -33,12 +34,12 @@ export default function Navbar({ image }: NavbarProps) {
     <nav className={styles.navbar}>
       {/* Logo */}
       <Link href="/">
-      <img
-        src={image || (data?.logo?.url ?? '/default-logo.png')}
-        alt="Logo"
-        width={50}
-        height={50}
-      />
+        <img
+          src={image || (data?.logo?.url ?? "/default-logo.png")}
+          alt="Logo"
+          width={50}
+          height={50}
+        />
       </Link>
 
       {/* Hamburger Menu Icon for Mobile */}
@@ -54,16 +55,24 @@ export default function Navbar({ image }: NavbarProps) {
       {/* Navigation Links */}
       <div
         className={`${styles.navbarLinks} ${
-          isMobileMenuOpen ? styles.navbarMobileMenu : ''
+          isMobileMenuOpen ? styles.navbarMobileMenu : ""
         }`}
       >
-        {data?.navigation_menu?.map((menuItem, index) => (
-          <Link key={index} href={menuItem.page_reference[0].url}>
-            {menuItem.label}
-          </Link>
-        ))}
+        {data?.navigation_menu?.map((menuItem, index) => {
+          const isActive = pathname === menuItem.page_reference[0].url; // Check if the current path matches the menu item URL
+          return (
+            <Link
+              key={index}
+              href={menuItem.page_reference[0].url}
+              className={isActive ? styles.activeLink : ""} // Conditionally apply the active class
+            >
+              {menuItem.label}
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );
 }
+
 
