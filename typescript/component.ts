@@ -64,6 +64,11 @@ type Widget = {
 }
 
 export type Component = {
+  aryan_banner: any;
+  contact_details(contact_details: any): unknown;
+  // about_page(about_page: any): unknown;
+  about_page : unknown;
+  skills: any;
   hero_banner: Banner;
   section?: SectionProps;
   section_with_buckets?: SectionWithBucket;
