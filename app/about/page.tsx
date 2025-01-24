@@ -57,7 +57,6 @@ export default function About() {
   }
 
   const {
-    greeting_text,
     description_about_me,
     education,
     certifications,
