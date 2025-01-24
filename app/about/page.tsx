@@ -42,7 +42,7 @@ export default function About() {
   async function fetchAboutData() {
     try {
       const res = await getAboutRes("/about");
-      console.log("About Page Data:", res.page_components[0].about_page);
+      console.log("About Page Data:", res.page_components[0]['about_page']);
       setAboutData(res.page_components[0].about_page as unknown as AboutPageProps);
     } catch (err) {
       console.error("Error fetching about page data:", err);
