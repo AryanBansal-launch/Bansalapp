@@ -22,10 +22,10 @@ interface SocialLink {
   icon: {url:string};
 }
 
-export interface Footerschema {
+export interface FooterSchema {
   navigation: NavigationLink[];
   social: SocialLink[];
-  logo: string;
+  logo: { url: string };
   copyright?: string;
 }
 
@@ -134,7 +134,7 @@ export const getProjectsRes = async (entryUrl: string): Promise<any> => {
 
 
 //get footer again
-export const getFooter = async (): Promise<Footerschema> => {
+export const getFooter = async (): Promise<FooterSchema> => {
   try {
     const response = (await getEntry({
       contentTypeUid: "footer_aryan",
@@ -152,7 +152,7 @@ export const getFooter = async (): Promise<Footerschema> => {
     return {
       navigation: Array.isArray(data.navigation.link) ? data.navigation.link : [],
       social: Array.isArray(data.social.social_share) ? data.social.social_share : [],
-      logo: data.logo || "",
+      logo: data.logo || { url: "" },
       copyright: data.copyright || "",
     };
   } catch (error) {

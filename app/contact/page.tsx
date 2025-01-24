@@ -36,8 +36,8 @@ interface SocialLinks {
 
 interface Contact {
   address: Address;
-  phone_details: Phone;
   email_details: Email;
+  phone_details: Phone;
   social_links: SocialLinks;
 }
 
@@ -48,7 +48,8 @@ export default function Contact() {
     async function fetchContactData() {
       try {
         const response = await getconatctRes('/contact');
-        setContactData(response.page_components[0].contact_details as any);
+        setContactData((response.page_components[0].contact_details) as unknown as Contact);
+        console.log("Contact Data from frontend:", response.page_components[0].contact_details);
       } catch (error) {
         console.error('Error fetching contact data:', error);
       }

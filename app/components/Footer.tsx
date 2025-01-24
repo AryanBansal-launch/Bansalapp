@@ -11,25 +11,26 @@ interface NavigationLink {
 
 interface SocialLink {
   title: string;
-  link: {href:string};
-  icon: {url:string};
+  link: { href: string };
+  icon: { url: string };
 }
-interface Footerschema {
+
+interface FooterSchema {
   navigation: NavigationLink[];
   social: SocialLink[];
-  logo:{url:string};
+  logo: { url: string };
   copyright?: string;
 }
 
 export default function Footer() {
-  const [footerData, setFooterData] = useState<Footerschema | null>(null);
+  const [footerData, setFooterData] = useState<FooterSchema | null>(null);
 
   useEffect(() => {
     async function fetchFooterData() {
       try {
-        const response = await getFooter();
+        const response: FooterSchema = await getFooter(); 
         console.log("Footer Data:", response);
-        setFooterData(response as any);
+        setFooterData(response);
       } catch (error) {
         console.error("Error fetching footer data:", error);
       }
@@ -46,10 +47,10 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        {/* Logo */}
         <div className={styles.logo}>
           <img src={logo.url} alt="Logo" width={50} height={50} />
         </div>
+
         {/* Navigation Links */}
         <div className={styles.navLinks}>
           {navigation.map((link, index) => (
@@ -76,4 +77,3 @@ export default function Footer() {
     </footer>
   );
 }
-
