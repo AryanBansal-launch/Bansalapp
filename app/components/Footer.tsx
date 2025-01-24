@@ -29,7 +29,7 @@ export default function Footer() {
       try {
         const response = await getFooter();
         console.log("Footer Data:", response);
-        setFooterData(response);
+        setFooterData(response as any);
       } catch (error) {
         console.error("Error fetching footer data:", error);
       }
@@ -50,7 +50,6 @@ export default function Footer() {
         <div className={styles.logo}>
           <img src={logo.url} alt="Logo" width={50} height={50} />
         </div>
-
         {/* Navigation Links */}
         <div className={styles.navLinks}>
           {navigation.map((link, index) => (

@@ -48,7 +48,7 @@ export default function Contact() {
     async function fetchContactData() {
       try {
         const response = await getconatctRes('/contact');
-        setContactData(response.page_components[0].contact_details);
+        setContactData(response.page_components[0].contact_details as any);
       } catch (error) {
         console.error('Error fetching contact data:', error);
       }
