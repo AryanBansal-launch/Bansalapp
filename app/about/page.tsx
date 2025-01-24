@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "../../styles/about.module.css";
 import Link from "next/link";
-import { getAboutRes } from "@/helper"; // Helper to fetch About page data
+import { getAboutRes } from "@/helper";
 
 interface Education {
   qualification_name: string;
@@ -53,7 +53,7 @@ export default function About() {
   }, []);
 
   if (!aboutData) {
-    return <div>Loading...</div>;
+    return <div className={styles.loading}>Loading...</div>;
   }
 
   const {
@@ -65,66 +65,70 @@ export default function About() {
   } = aboutData;
 
   return (
-    <div className={styles.main}>
-      {/* Greeting Section */}
-      <h1 className="h1">Welcome to My Portfolio</h1>
-      <section className={styles.greetingSection}>
-        <div dangerouslySetInnerHTML={{ __html: greeting_text }} />
-      </section>
-
-      {/* About Description Section */}
-      <section className={styles.aboutSection}>
-        <h2 className="h2">About Me</h2>
-        <p>{description_about_me}</p>
-      </section>
+    <div className={styles.container}>
+      <div className={styles.hero}>
+        <h1 className={styles.heading}>About Me</h1>
+        <p className={styles.description}>{description_about_me}</p>
+      </div>
 
       {/* Education Section */}
-      <section className={styles.educationSection}>
-        <h2 className="h2">Education</h2>
-        {education.map((edu, index) => (
-          <div className={styles.educationBox} key={index}>
-            <h3>{edu.qualification_name}</h3>
-            <p>{edu.institution_name}</p>
-            <p>Start Date: {edu.start_date}</p>
-            <p>End Date: {edu.end_date}</p>
-          </div>
-        ))}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Education</h2>
+        <div className={styles.cardContainer}>
+          {education.map((edu, index) => (
+            <div className={styles.card} key={index}>
+              <h3 className={styles.cardTitle}>{edu.qualification_name}</h3>
+              <p className={styles.cardText}>{edu.institution_name}</p>
+              <p className={styles.cardSubText}>
+                {edu.start_date} - {edu.end_date}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Certifications Section */}
-      <section className={styles.certificationsSection}>
-        <h2 className="h2">Certifications</h2>
-        {certifications.map((cert, index) => (
-          <div className={styles.certificationBox} key={index}>
-            <h3>{cert.certification_name}</h3>
-            <p>Certifying Authority: {cert.certifying_body_name}</p>
-            <p>Domain: {cert.domain_technology_of_certification}</p>
-            <p>Date of Certification: {cert.date_of_certification}</p>
-            <Link
-              className="a"
-              href={cert.link_of_certificate}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Certificate
-            </Link>
-          </div>
-        ))}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Certifications</h2>
+        <div className={styles.cardContainer}>
+          {certifications.map((cert, index) => (
+            <div className={styles.card} key={index}>
+              <h3 className={styles.cardTitle}>{cert.certification_name}</h3>
+              <p className={styles.cardText}>{cert.certifying_body_name}</p>
+              <p className={styles.cardSubText}>
+                {cert.domain_technology_of_certification}
+              </p>
+              <button className={styles.button}>
+                <Link
+                  href={cert.link_of_certificate}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Certificate
+                </Link>
+              </button>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Experience Section */}
-      <section className={styles.experienceSection}>
-        <h2 className="h2">Experience</h2>
-        {experiences.map((exp, index) => (
-          <div className={styles.experienceBox} key={index}>
-            <h3 dangerouslySetInnerHTML={{ __html: exp.designation }} />
-            <p>Company: {exp.company}</p>
-            <p>Start Date: {exp.start_date}</p>
-            <p>
-              End Date: {exp.end_date ? exp.end_date : "Present"}
-            </p>
-          </div>
-        ))}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Experience</h2>
+        <div className={styles.cardContainer}>
+          {experiences.map((exp, index) => (
+            <div className={styles.card} key={index}>
+              <h3
+                className={styles.cardTitle}
+                dangerouslySetInnerHTML={{ __html: exp.designation }}
+              />
+              <p className={styles.cardText}>{exp.company}</p>
+              <p className={styles.cardSubText}>
+                {exp.start_date} - {exp.end_date ? exp.end_date : "Present"}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );

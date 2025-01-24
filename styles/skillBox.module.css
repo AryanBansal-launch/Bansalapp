@@ -1,39 +1,4 @@
-/* 
 
-.skillBox {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .skillBox:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .skillIcon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1rem;
-  }
-  
-  .skillName {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
-    color: #444;
-  }
-  
-  .skillLevel {
-    font-size: 1rem;
-    color: #777;
-  }
-   */
-
-   /* skillBox.module.css */
 
 .skillCircle {
     background-color: #fff;
@@ -46,10 +11,12 @@
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 0 auto; /* Center the circle */
+    margin: 0 auto; 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+    animation: float 3s ease-in-out infinite;
   }
   
   .skillCircle:hover {

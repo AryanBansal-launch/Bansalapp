@@ -1,47 +1,106 @@
-/* skills.module.css
-
-.skillsPage {
+   .skillsPage {
     padding: 2rem;
-    background-color: #f9f9f9;
+    background-color: #000; 
+    color: #fff; 
     text-align: center;
     font-family: 'Arial', sans-serif;
+    min-height: 100vh; 
   }
   
   .pageTitle {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: #333;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: aqua; 
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
   }
   
   .skillsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-  }
-   */
-
-   /* skills.module.css */
-
-.skillsPage {
-    padding: 2rem;
-    background-color: #f9f9f9;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .pageTitle {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-  
-  .skillsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
-    gap: 2rem;
-    justify-content: center; 
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
     align-items: center;
+    padding: 2rem;
+  }
+  
+  .skillsGrid::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #f0db4f, transparent);
+    margin-top: 1.5rem;
+  }
+  
+  .skillBox {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
     padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    animation: float 3s ease-in-out infinite; /* Floating animation */
+  }
+  
+  /* Floating Animation Keyframes */
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px); /* Float up */
+    }
+    100% {
+      transform: translateY(0); /* Return to the original position */
+    }
+  }
+  
+  .skillBox:hover {
+    transform: translateY(-15px); /* Extra lift on hover */
+    box-shadow: 0 8px 20px rgba(240, 219, 79, 0.3); /* Yellowish glow */
+  }
+  
+  .skillIcon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem auto;
+    display: block;
+    border-radius: 50%;
+    background: #fff; /* Icon background */
+    padding: 10px;
+    object-fit: contain;
+  }
+  
+  .skillName {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+  .skillLevel {
+    font-size: 1rem;
+    color: #888; /* Subtle gray for skill level */
+  }
+  
+  @media (max-width: 768px) {
+    .skillsGrid {
+      gap: 1rem;
+    }
+  
+    .skillBox {
+      padding: 0.8rem;
+    }
+  
+    .skillIcon {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .pageTitle {
+      font-size: 2.2rem;
+    }
   }
   

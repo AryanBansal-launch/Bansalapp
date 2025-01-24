@@ -33,7 +33,7 @@ const SkillsPage: React.FC = () => {
 
   return (
     <div className={styles.skillsPage}>
-      <h1 className={styles.pageTitle}>My Skills</h1>
+      <h1 className={styles.pageTitle}>Skills & Technologies</h1>
       <div className={styles.skillsGrid}>
         {skills.map((skill, index) => (
           <SkillBox

@@ -15,7 +15,9 @@
     "next": "15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-loading-skeleton": "^3.3.1"
+    "react-loading-skeleton": "^3.3.1",
+    "react-toastify": "^11.0.3",
+    "typed.js": "^2.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

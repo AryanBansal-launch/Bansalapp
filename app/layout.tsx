@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 import './globals.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
+import { ToastContainer} from 'react-toastify';
 
 export default function RootLayout({
   children,
@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <ToastContainer />
         <Navbar />
         <main>{children}</main>
         <Footer />

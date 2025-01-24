@@ -3,6 +3,8 @@ import Link from 'next/link';
 import styles from '../../styles/contact.module.css';
 import { getconatctRes } from '@/helper';
 import { useState, useEffect, FormEvent } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Icon {
   url: string;
@@ -59,8 +61,8 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    alert('Thank you for your message! We will get back to you soon.');
+    toast.success('Thank you for your message! I will get back to you soon.');
+    // alert('Thank you for your message! We will get back to you soon.');
 
     e.currentTarget.reset();
   };
@@ -85,7 +87,7 @@ export default function Contact() {
         </div>
         <div className={styles.detail}>
           <img src={contactData.phone_details.icon.url} alt="Phone Icon" />
-          <p>{contactData.phone_details.phone_no_}</p>
+          <p>+91 {contactData.phone_details.phone_no_}</p>
         </div>
         <div className={styles.detail}>
           <img src={contactData.email_details.icon.url} alt="Email Icon" />
@@ -94,8 +96,19 @@ export default function Contact() {
         <div className={styles.social}>
           {contactData.social_links.social_link.map((link, index) => (
             <Link key={index} href={link.social_link_url.href} passHref>
-              {/* <img src={link.social_link_url.title} alt={link.social_link_url.title} /> */}
-              <p>{link.social_link_url.title}</p>
+              <img
+  src={
+    link.social_link_url.title === "Github"
+      ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltd77a9f79cb4b5a70/67920d2b259b9aeee6267914/github-brands-solid.svg"
+      : link.social_link_url.title === "Linked in"
+      ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltcd519e7e59846bd7/67920cc7bc13495e79d5cc57/linkedin-brands-solid.svg"
+      : link.social_link_url.title === "Instagram"
+      ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltb8efd1cf701a6459/67920cc758fb6d359081245c/instagram-brands-solid.svg"
+      : link.social_link_url.title
+  }
+  alt={link.social_link_url.title}
+/>
+              {/* <p>{link.social_link_url.title}</p> */}
             </Link>
           ))}
         </div>

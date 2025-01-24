@@ -109,3 +109,16 @@
     cursor: pointer;
   }
     
+  .social img {
+    border-radius: 50%;
+    padding: 3px;
+    transition: all 0.3s ease-in-out; /* Smooth transition for glowing effect */
+    color: white;
+    background-color: white;
+  }
+  
+  /* Apply glowing effect on hover */
+  .social img {
+    filter: brightness(1.4); /* Increase brightness for shine effect */
+    box-shadow: 0 0 8px 2px rgba(0, 255, 255, 0.7); /* Add glow around the image */
+  }
