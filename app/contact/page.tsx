@@ -102,7 +102,7 @@ export default function Contact() {
       <form className={styles.form} onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" placeholder="Your Message" required></textarea>
+        <textarea name="message" placeholder="Your Message. Please start with mentioning your email id." required></textarea>
         <button type="submit">Send</button>
       </form>
       <div className={styles.info}>

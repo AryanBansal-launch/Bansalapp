@@ -17,7 +17,7 @@ interface Certification {
   certifying_body_name: string;
   domain_technology_of_certification: string;
   date_of_certification: string;
-  link_of_certificate: string;
+  link_of_certificate: { href: string };
 }
 
 interface Experience {
@@ -99,7 +99,7 @@ export default function About() {
               </p>
               <button className={styles.button}>
                 <Link
-                  href={cert.link_of_certificate}
+                  href={cert.link_of_certificate.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
