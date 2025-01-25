@@ -5,6 +5,7 @@ import { getconatctRes } from '@/helper';
 import { useState, useEffect, FormEvent } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import emailjs from 'emailjs-com';
 
 interface Icon {
   url: string;
@@ -61,10 +62,34 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success('Thank you for your message! I will get back to you soon.');
-    // alert('Thank you for your message! We will get back to you soon.');
 
-    e.currentTarget.reset();
+    // Get form data
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+
+    // Set up EmailJS parameters
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+    };
+
+    // Send email using EmailJS
+    emailjs.send('service_13anu8h', 'template_j9dk508', templateParams, 'w63ZLSehLnKIOSKII')
+      .then(
+        (response: any) => {
+          console.log('Success:', response);
+          toast.success('Thank you for your message! I will get back to you soon.');
+          form.reset();
+        },
+        (error: any) => {
+          console.error('Error:', error);
+          toast.error('Something went wrong. Please try again later.');
+        }
+      );
   };
 
   if (!contactData) {
@@ -75,9 +100,9 @@ export default function Contact() {
     <div className={styles.main}>
       <h1 className="h1">Reach Out to Me!</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" required></textarea>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
         <button type="submit">Send</button>
       </form>
       <div className={styles.info}>
@@ -97,18 +122,17 @@ export default function Contact() {
           {contactData.social_links.social_link.map((link, index) => (
             <Link key={index} href={link.social_link_url.href} passHref>
               <img
-  src={
-    link.social_link_url.title === "Github"
-      ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltd77a9f79cb4b5a70/67920d2b259b9aeee6267914/github-brands-solid.svg"
-      : link.social_link_url.title === "Linked in"
-      ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltcd519e7e59846bd7/67920cc7bc13495e79d5cc57/linkedin-brands-solid.svg"
-      : link.social_link_url.title === "Instagram"
-      ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltb8efd1cf701a6459/67920cc758fb6d359081245c/instagram-brands-solid.svg"
-      : link.social_link_url.title
-  }
-  alt={link.social_link_url.title}
-/>
-              {/* <p>{link.social_link_url.title}</p> */}
+                src={
+                  link.social_link_url.title === "Github"
+                    ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltd77a9f79cb4b5a70/67920d2b259b9aeee6267914/github-brands-solid.svg"
+                    : link.social_link_url.title === "Linked in"
+                    ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltcd519e7e59846bd7/67920cc7bc13495e79d5cc57/linkedin-brands-solid.svg"
+                    : link.social_link_url.title === "Instagram"
+                    ? "https://images.contentstack.io/v3/assets/bltf0c40becc08e1275/bltb8efd1cf701a6459/67920cc758fb6d359081245c/instagram-brands-solid.svg"
+                    : link.social_link_url.title
+                }
+                alt={link.social_link_url.title}
+              />
             </Link>
           ))}
         </div>
@@ -116,5 +140,4 @@ export default function Contact() {
     </div>
   );
 }
-
 
