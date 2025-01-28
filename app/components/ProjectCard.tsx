@@ -1,4 +1,5 @@
 import styles from '../../styles/projectcard.module.css';
+import Link from "next/link";
 
 interface ProjectCardProps {
   title: string;
@@ -6,9 +7,10 @@ interface ProjectCardProps {
   image: string;
   codelink: string;
   demolink: string;
+  detailink:string;
 }
 
-export default function ProjectCard({ title, description, image, codelink, demolink }: ProjectCardProps) {
+export default function ProjectCard({ title, description, image, codelink, demolink ,detailink}: ProjectCardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.image}>
@@ -26,6 +28,10 @@ export default function ProjectCard({ title, description, image, codelink, demol
             {/* <img src="/netlify.svg" alt="Netlify" width={20} height={20} /> */}
             <button className={styles.button}>View Live</button>
           </a>
+          <Link href={detailink}>
+            {/* <img src="/netlify.svg" alt="Netlify" width={20} height={20} /> */}
+            <button className={styles.button}>Detail</button>
+          </Link>
         </div>
       </div>
     </div>

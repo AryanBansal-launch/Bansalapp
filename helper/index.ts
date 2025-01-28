@@ -128,6 +128,9 @@ export const getProjectsRes = async (entryUrl: string): Promise<any> => {
         title: project.links.deployed_project_link.title,
         href: project.links.deployed_project_link.href,
       },
+      detail: {
+        href: project.links.detail.href,
+      },
     },
   }));
 };

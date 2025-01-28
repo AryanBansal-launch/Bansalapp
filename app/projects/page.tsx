@@ -1,4 +1,3 @@
-
 'use client';
 
 import styles from '../../styles/projects.module.css';
@@ -17,11 +16,12 @@ interface Project {
   links: {
     code_link: Link;
     deployed_project_link: Link;
+    detail: Link;
   };
 }
 
 interface ProjectsProps {
-  map(arg0: (project: { project_title: string; project_description: string; project_thumbnail: string; links: { code_link: { href: string; }; deployed_project_link: { href: string; }; }; }, index: Key | null | undefined) => import("react").JSX.Element): import("react").ReactNode;
+  map(arg0: (project: { project_title: string; project_description: string; project_thumbnail: string; links: { code_link: { href: string; }; deployed_project_link: { href: string; }; detail:{href:string;}; }; }, index: Key | null | undefined) => import("react").JSX.Element): import("react").ReactNode;
   projects: Project[];
 }
 
@@ -49,7 +49,11 @@ const Projects = () => {
     <div className={styles.main}>
       <h1 className="h1">My Projects</h1>
       <div className={styles.grid}>
-        {projectData.map((project: { project_title: string; project_description: string; project_thumbnail: string; links: { code_link: { href: string; }; deployed_project_link: { href: string; }; }; }, index: Key | null | undefined) => (
+        {projectData.map((project: { project_title: string; project_description: string; project_thumbnail: string; links: {
+          detail:{
+            href:string;
+          }; code_link: { href: string; }; deployed_project_link: { href: string; }; 
+}; }, index: Key | null | undefined) => (
           <ProjectCard
             key={index}
             title={project.project_title}
@@ -57,6 +61,7 @@ const Projects = () => {
             image={project.project_thumbnail}
             codelink={project.links.code_link.href}
             demolink={project.links.deployed_project_link.href}
+            detailink={project.links.detail.href}
           />
         ))}
       </div>

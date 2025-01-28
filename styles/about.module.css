@@ -117,7 +117,7 @@
 
 
 .button:hover {
-  background: linear-gradient(145deg, #00e6e6, #00bfbf); /* Slightly lighter aqua */
+  background: linear-gradient(145deg, #00e6e6, #00bfbf); 
   transform: translateY(-3px);
   color: black;
   box-shadow: 0 6px 12px rgba(1, 10, 9, 0.778);
