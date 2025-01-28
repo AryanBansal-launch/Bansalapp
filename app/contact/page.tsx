@@ -6,6 +6,7 @@ import { useState, useEffect, FormEvent } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from 'emailjs-com';
+import { EmailJSResponseStatus } from 'emailjs-com';
 
 interface Icon {
   url: string;
@@ -80,12 +81,12 @@ export default function Contact() {
     // Send email using EmailJS
     emailjs.send('service_13anu8h', 'template_j9dk508', templateParams, 'w63ZLSehLnKIOSKII')
       .then(
-        (response: any) => {
+        (response: EmailJSResponseStatus) => {
           console.log('Success:', response);
           toast.success('Thank you for your message! I will get back to you soon.');
           form.reset();
         },
-        (error: any) => {
+        (error: Error) => {
           console.error('Error:', error);
           toast.error('Something went wrong. Please try again later.');
         }
