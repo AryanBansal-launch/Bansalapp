@@ -29,7 +29,7 @@ export interface FooterSchema {
   copyright?: string;
 }
 
-//For navbar
+//For getting navbar data
 export const getHeaderRes = async (): Promise<HeaderProps> => {
   const response = (await getEntry({
     contentTypeUid: "aryan_navbar",
@@ -40,6 +40,7 @@ export const getHeaderRes = async (): Promise<HeaderProps> => {
   return response[0][0];
 };
 
+//Also for getting navbar data
 export const getNavbar=async():Promise<HeaderProps> => {
   const response = (await getEntryByUrl({
     contentTypeUid: "aryan_navbar",
@@ -51,7 +52,7 @@ export const getNavbar=async():Promise<HeaderProps> => {
 }
 
 
-//for footer
+//for getting footer data
 export const getFooterRes = async (): Promise<FooterProps> => {
   const response = (await getEntry({
     contentTypeUid: "footer_aryan",
@@ -61,7 +62,7 @@ export const getFooterRes = async (): Promise<FooterProps> => {
   return response[0][0];
 };
 
-//for getting all pages 
+//for getting all pages of specific content type
 export const getAllEntries = async (): Promise<Page[]> => {
   const response = (await getEntry({
     contentTypeUid: "common_page",
@@ -71,7 +72,7 @@ export const getAllEntries = async (): Promise<Page[]> => {
   return response[0];
 };
 
-//for geting single page
+//for geting any single page by the content type
 export const getPageRes = async (entryUrl: string): Promise<Page> => {
   const response = (await getEntryByUrl({
     contentTypeUid: "common_page",
@@ -104,7 +105,7 @@ export const getAboutRes = async (entryUrl: string): Promise<Page> => {
   return response[0];
 };
 
-//for getting Projects page
+//for getting All Projects page
 export const getProjectsRes = async (entryUrl: string): Promise<any> => {
   const response = await getEntryByUrl({
     contentTypeUid: "common_page",
@@ -113,7 +114,7 @@ export const getProjectsRes = async (entryUrl: string): Promise<any> => {
     jsonRtePath: undefined,
   });
 
-  const data = (response as any[])[0]; // Assuming the first entry contains your desired data
+  const data = (response as any[])[0]; 
   console.log("projects Data from backend:", data);
   return data.page_components[0].project.projects.map((project: any) => ({
     project_title: project.project_title,
@@ -160,7 +161,7 @@ export const getFooter = async (): Promise<FooterSchema> => {
     };
   } catch (error) {
     console.error("Error fetching footer data:", error);
-    throw error; // Throw the error so it can be handled in the component
+    throw error; 
   }
 };
 
