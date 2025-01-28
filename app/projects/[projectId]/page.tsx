@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, Key } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useParams } from 'next/navigation';
 import styles from '../../../styles/projectdetail.module.css';
 import Link from "next/link";
@@ -21,7 +21,7 @@ interface ProjectDetail {
 
 
 const Page = () => {
-  const { projectId } = useParams(); // Dynamically fetch the projectId from the URL
+  const { projectId } = useParams(); 
   const [projectData, setProjectData] = useState<ProjectDetail | null>(null);
 
   useEffect(() => {
