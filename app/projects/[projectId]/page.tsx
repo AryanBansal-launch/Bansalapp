@@ -1,16 +1,71 @@
-import React from 'react'
-const page = ({params}:{
-    params:{
-        projectId:string
-    }
-}) => {
-  return (
-    <div>
-      <h1>Project Detail Page</h1>
-      <p>Project Id: {params.projectId}</p>
-    </div>
-  )
+'use client';
+import React, { useState, useEffect, Key } from 'react';
+import { useParams } from 'next/navigation';
+import styles from '../../../styles/projectdetail.module.css';
+import Link from "next/link";
+import { getProjectDetail } from "@/helper";
+
+interface Link {
+  href: string;
 }
 
-export default page
+interface ProjectDetail {
+  project_title: string;
+  project_description: string;
+  thumbnail_image: { url: string };
+  links_group: {
+    codelink: Link;
+    live_project: Link;
+  };
+}
 
+
+const Page = () => {
+  const { projectId } = useParams(); // Dynamically fetch the projectId from the URL
+  const [projectData, setProjectData] = useState<ProjectDetail | null>(null);
+
+  useEffect(() => {
+    async function fetchProjectData() {
+      try {
+        const response = await getProjectDetail(`/projects/${projectId}`);
+        console.log("Specific project data:", response);
+        setProjectData(response);
+      } catch (error) {
+        console.error("Error fetching project data:", error);
+      }
+    }
+
+    fetchProjectData();
+  }, [projectId]);
+
+  if (!projectData) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div className={styles.projectDetailPage}>
+      {/* <h1 className='h1'>Project Details</h1> */}
+        <div  className={styles.projectCard}>
+          <h2 className='h1'>{projectData.project_title}</h2>
+          {projectData.thumbnail_image && (
+            <img
+              src={projectData.thumbnail_image.url}
+              alt={projectData.project_title}
+              className={styles.thumbnail}
+            />
+          )}
+          <p className='p'>{projectData.project_description}</p>
+          <div className={styles.links}>
+            <Link href={projectData.links_group.codelink.href} target="_blank" className={styles.link}>
+              View Code
+            </Link>
+            <Link href={projectData.links_group.live_project.href} target="_blank" className={styles.link}>
+              View Live Project
+            </Link>
+          </div>
+        </div>
+    </div>
+  );
+};
+
+export default Page;

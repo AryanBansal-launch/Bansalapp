@@ -185,3 +185,14 @@ export const gethomeRes = async (entryUrl: string): Promise<Page> => {
   })) as Page[];
   return response[0];
 };
+
+//getting the project detail for a specific project
+export const getProjectDetail = async (entryUrl: string): Promise<any> => {
+  const response = (await getEntryByUrl({
+    contentTypeUid: "project_detail",
+    entryUrl:entryUrl,
+    referenceFieldPath: undefined,
+    jsonRtePath: undefined
+  })) as Page[];
+  return response[0];
+};
