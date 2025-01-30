@@ -64,7 +64,7 @@ export default function About() {
   } = aboutData;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ paddingTop: "120px" }}>
       <div className={styles.hero}>
         <h1 className={styles.heading}>About Me</h1>
         <p className={styles.description}>{description_about_me}</p>

@@ -28,7 +28,7 @@
   
   .projectCard:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(66, 246, 249, 0.86); /* Softer glow effect */
+    box-shadow: 0 12px 30px rgba(66, 246, 249, 0.86); 
   }
   
   .h2 {

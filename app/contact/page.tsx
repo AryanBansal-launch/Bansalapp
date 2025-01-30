@@ -98,7 +98,7 @@ export default function Contact() {
   }
 
   return (
-    <div className={styles.main}>
+    <div className={styles.main} style={{ paddingTop: "120px" }}>
       <h1 className="h1">Reach Out to Me!</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Your Name" required />

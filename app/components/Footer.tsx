@@ -45,7 +45,7 @@ export default function Footer() {
   const { navigation, social, copyright } = footerData;
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} style={{ marginBottom: "0px" }}>
       <div className={styles.container}>
         {/* Logo */}
         {/* <div className={styles.logo}>

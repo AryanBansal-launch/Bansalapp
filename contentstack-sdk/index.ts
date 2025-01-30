@@ -109,7 +109,7 @@ export const getEntry = ({
   });
 };
 
-//GET EBTRY BY ID
+//GET ENTRY BY ID
 export const getEntryById = ({
   contentTypeUid,
   entryId,

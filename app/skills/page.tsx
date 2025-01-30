@@ -32,7 +32,7 @@ const SkillsPage: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.skillsPage}>
+    <div className={styles.skillsPage} style={{ paddingTop: "120px" }}>
       <h1 className={styles.pageTitle}>Skills & Technologies</h1>
       <div className={styles.skillsGrid}>
         {skills.map((skill, index) => (
