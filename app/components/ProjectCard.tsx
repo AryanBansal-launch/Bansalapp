@@ -22,11 +22,11 @@ export default function ProjectCard({ title, description, image, codelink, demol
         <div className={styles.links}>
           <a href={codelink} target="_blank" rel="noreferrer">
             {/* <img src="/github.svg" alt="GitHub" width={20} height={20} /> */}
-            <button className={styles.button}>View Code</button>
+            <button className={styles.button}>Code</button>
           </a>
           <a href={demolink} target="_blank" rel="noreferrer">
             {/* <img src="/netlify.svg" alt="Netlify" width={20} height={20} /> */}
-            <button className={styles.button}>View Live</button>
+            <button className={styles.button}>Live</button>
           </a>
           <Link href={detailink}>
             {/* <img src="/netlify.svg" alt="Netlify" width={20} height={20} /> */}

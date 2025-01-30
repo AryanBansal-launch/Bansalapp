@@ -64,6 +64,9 @@
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: linear-gradient(145deg, #2a2a2a, #353535); /* Subtle gradient */
   border-radius: 12px;
   padding: 1.5rem;

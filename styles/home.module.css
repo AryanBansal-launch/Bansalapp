@@ -1,4 +1,4 @@
-
+/* 
 .banner {
   position: relative;
   height: 100vh;
@@ -89,6 +89,225 @@
   object-fit: cover;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
+@media (max-width: 1024px) {
+  .overlay {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .textContainer {
+    max-width: 100%;
+    padding-right: 0;
+  }
+
+  .imageContainer {
+    max-width: 80%;
+    margin-top: 30px;
+  }
+
+  .profileImage {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    height: auto;
+    padding: 30px 0;
+  }
+
+  .overlay {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .resumeButton {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .resumeButton {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+} */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to hero section */
+.banner {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Background video parallax effect */
+.videoWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.backgroundVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(50%);
+  transform: scale(1.1);
+  transition: transform 4s ease-in-out;
+}
+
+.banner:hover .backgroundVideo {
+  transform: scale(1);
+}
+
+/* Overlay animations */
+.overlay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  padding: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated Text */
+.textContainer {
+  color: white;
+  max-width: 60%;
+  padding-right: 30px;
+  z-index: 1;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: 'Helvetica Neue', sans-serif;
+  line-height: 1.2;
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.description {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  line-height: 1.8;
+  font-family: 'Arial', sans-serif;
+  opacity: 0;
+  animation: fadeInUp 1.4s ease-out forwards;
+}
+
+/* Resume Button */
+.resumeButton {
+  background-color: #007bff;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeInUp 1.6s ease-out forwards;
+}
+
+.resumeButton:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* Image Animation */
+.imageContainer {
+  max-width: 35%;
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); */
+  opacity: 0;
+  animation: fadeInUp 1.5s ease-out forwards, floating 4s infinite ease-in-out;
+}
+
 
 @media (max-width: 1024px) {
   .overlay {
