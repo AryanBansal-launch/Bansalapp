@@ -1,3 +1,4 @@
+//used client side rendering because using emailjs
 'use client';
 import Link from 'next/link';
 import styles from '../../styles/contact.module.css';
