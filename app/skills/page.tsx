@@ -52,6 +52,7 @@
 import SkillBox from '../components/SkillBox';
 import styles from '../../styles/skills.module.css';
 import { getSkillsRes } from '@/helper';
+import SignIn from '../components/sign-in';
 
 interface Skill {
   logo: {
@@ -84,6 +85,7 @@ export default async function SkillsPage() {
           />
         ))}
       </div>
+      <SignIn />
     </div>
   );
 }
