@@ -5,16 +5,16 @@ import { useSession } from 'next-auth/react';
 import styles from '../../styles/skills.module.css';
 import * as contentstack from '@contentstack/management'
 
-interface sdk{
-  stack: (arg0: { api_key: string; }) => {
-    contentType: (arg0: string) => {
-      entry: (arg0: string) => {
-        fetch: () => Promise<any>;
-        then: (arg0: (entry: any) => void) => any;
-      };
-    };
-  };
-}
+// interface sdk{
+//   stack: (arg0: { api_key: string; }) => {
+//     contentType: (arg0: string) => {
+//       entry: (arg0: string) => {
+//         fetch: () => Promise<any>;
+//         then: (arg0: (entry: any) => void) => any;
+//       };
+//     };
+//   };
+// }
 
 export default function SessionCheck() {
   const { data: session } = useSession();
@@ -36,15 +36,15 @@ export default function SessionCheck() {
   const handleAddSkill = async () => {
     console.log('New Skill:', { skillName, skillLevel, iconFile });
     //Implement CMA API call to upload icon and save skill in the database
-    const client = contentstack.client({  })
-    client.stack({ api_key: process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string }).contentType('common_page').entry('blt3c15dff86ebb6b6f')
-    .fetch()
-    .then((entry) => {
-    entry.title = 'My New Entry'
-    entry.description = 'Entry description'
-    return entry.update({ locale: 'en-at' })
-    })
-    .then((entry) => console.log(entry))
+    // const client = contentstack.client({  })
+    // client.stack({ api_key: process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string }).contentType('common_page').entry('blt3c15dff86ebb6b6f')
+    // .fetch()
+    // .then((entry) => {
+    // entry.title = 'My New Entry'
+    // entry.description = 'Entry description'
+    // return entry.update({ locale: 'en-at' })
+    // })
+    // .then((entry) => console.log(entry))
 
     setIsModalOpen(false);
   };
