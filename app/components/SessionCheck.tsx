@@ -21,15 +21,9 @@ export default function SessionCheck() {
       setIconPreview(URL.createObjectURL(file)); // Generate a preview URL
     }
   };
-  const updateskill = async () => {
-    console.log('New Skill:', { skillName, skillLevel, iconFile });
-  }
   const handleAddSkill = async () => {
     console.log('New Skill:', { skillName, skillLevel, iconFile });
-
     //Implement CMA API call to upload icon and save skill in the database
-
-
     setIsModalOpen(false);
   };
 
