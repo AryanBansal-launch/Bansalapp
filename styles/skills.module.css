@@ -103,4 +103,151 @@
       font-size: 2.2rem;
     }
   }
-  
+.addSkillButton {
+  background: linear-gradient(135deg, #6366f1, #9333ea);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.addSkillButton:hover {
+  background: linear-gradient(135deg, #4f46e5, #7e22ce);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.addSkillButton:active {
+  transform: translateY(0);
+}
+
+/* modal styles */
+/* Add Skill Button */
+.addSkillButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.addSkillButton:hover {
+  background-color: #45a049;
+}
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Content */
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Fields */
+.inputField {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Select Dropdown */
+.selectField {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background: white;
+  color: #000;
+}
+
+/* Upload Icon Label */
+.uploadLabel {
+  display: block;
+  background-color: #f3f3f3;
+  color: #000;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.uploadLabel:hover {
+  background-color: #e0e0e0;
+}
+
+/* Hide default file input */
+.uploadInput {
+  display: none;
+}
+
+/* Icon Preview */
+.iconPreview {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin: 10px auto;
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Buttons */
+.addButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.addButton:hover {
+  background-color: #45a049;
+}
+
+.closeButton {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.closeButton:hover {
+  background-color: #c9302c;
+}

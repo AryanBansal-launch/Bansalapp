@@ -1,15 +1,25 @@
+import { signIn, signOut } from "../auth" // Ensure the correct path
 
-import { signIn } from "../auth" // Update the path to the correct module location
- 
-export default function SignIn() {
+export default function AuthButtons() {
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signIn("github")
-      }}
-    >
-      <button type="submit">Signin with GitHub</button>
-    </form>
-  )
-} 
+    <div>
+      <form
+        action={async () => {
+          "use server";
+          await signIn("github");
+        }}
+      >
+        <button type="submit">Sign in with GitHub</button>
+      </form>
+
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <button type="submit">Sign Out</button>
+      </form>
+    </div>
+  );
+}

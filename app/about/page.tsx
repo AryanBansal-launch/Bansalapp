@@ -154,6 +154,7 @@ interface Certification {
 interface Experience {
   designation: string;
   company: string;
+  department: string;
   start_date: string;
   end_date: string | null;
 }
@@ -241,6 +242,7 @@ export default async function About() {
                 dangerouslySetInnerHTML={{ __html: exp.designation }}
               />
               <p className={styles.cardText}>{exp.company}</p>
+              <p className={styles.cardText}>{exp.department}</p>
               <p className={styles.cardSubText}>
                 {exp.start_date} - {exp.end_date ? exp.end_date : "Present"}
               </p>

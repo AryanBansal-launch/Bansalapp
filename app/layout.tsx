@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 import './globals.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { SessionProvider } from "next-auth/react";
 import { ToastContainer} from 'react-toastify';
 
 export default function RootLayout({
@@ -25,11 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-  
+        <SessionProvider>
       <ToastContainer />
         <Navbar />
         <main>{children}</main>
         <Footer />
+        </SessionProvider>
       </body>
     </html>
   );
