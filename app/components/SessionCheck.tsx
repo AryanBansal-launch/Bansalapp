@@ -21,7 +21,6 @@ export default function SessionCheck() {
   const [skillLevel, setSkillLevel] = useState('Beginner');
   const [iconFile, setIconFile] = useState<File | null>(null);
   const [iconPreview, setIconPreview] = useState<string | null>(null);
-  // const [skillIcon, setSkillIcon] = useState<string | null>(null);
   const [asset,setAsset]=useState<ContentstackAsset|null>(null);
 
   if (!session) return null;
@@ -34,12 +33,6 @@ export default function SessionCheck() {
     setIconPreview(URL.createObjectURL(file)); // For local preview
   
     try {
-      // const client = contentstack.client();
-      // const stack = client.stack({
-      //   api_key: process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string,
-      //   management_token: process.env.NEXT_PUBLIC_CONTENTSTACK_MANAGEMENT_TOKEN as string,
-      // });
-  
       // Contentstack API requires FormData to handle file uploads
       const formData = new FormData();
       formData.append("asset[upload]", file); // Correct way to send a file
@@ -63,7 +56,6 @@ export default function SessionCheck() {
   
       if (response.ok) {
         console.log("Uploaded Asset:", data);
-        // setSkillIcon(data.asset.url);
         setAsset(data.asset); 
         toast.success("File uploaded successfully!");
         await publishasset(data.asset); 
@@ -91,7 +83,7 @@ export default function SessionCheck() {
     };
   
     client.stack({ api_key: process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string, management_token: process.env.NEXT_PUBLIC_CONTENTSTACK_MANAGEMENT_TOKEN as string })
-      .asset(asset.uid)  // Ensure asset.uid is passed correctly
+      .asset(asset.uid) 
       .publish({ publishDetails: assetobj, locale: "en-us" })
       .then((response) => {
         console.log(response.notice);
