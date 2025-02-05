@@ -7,12 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from '../../styles/skills.module.css';
 import * as contentstack from '@contentstack/management'
 
-type ContentstackAsset = {
-  uid: string;
-  url: string;
-  title: string;
-  description: string;
-}
+// type ContentstackAsset = {
+//   uid: string;
+//   url: string;
+//   title: string;
+//   description: string;
+// }
 
 export default function SessionCheck() {
   const { data: session } = useSession();
@@ -22,7 +22,7 @@ export default function SessionCheck() {
   const [iconFile, setIconFile] = useState<File | null>(null);
   const [iconPreview, setIconPreview] = useState<string | null>(null);
   // const [skillIcon, setSkillIcon] = useState<string | null>(null);
-  const [asset,setAsset]=useState<ContentstackAsset|null>(null);
+  const [asset,setAsset]=useState<any|null>(null);
 
   if (!session) return null;
 
@@ -78,7 +78,7 @@ export default function SessionCheck() {
   };
   
   //publish asset function
-  const publishasset = async (asset:ContentstackAsset) => {
+  const publishasset = async (asset:any) => {
     if (!asset || !asset.uid) {
       console.error("Asset UID is not available");
       return;
