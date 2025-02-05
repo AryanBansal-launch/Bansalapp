@@ -5,9 +5,9 @@ import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../../styles/skills.module.css';
-import * as contentstack from '@contentstack/management'
+import contentstack from '@contentstack/management'
 
-interface ContentstackAsset {
+interface MyAsset {
   uid: string;
   url: string;
   title: string;
@@ -21,7 +21,7 @@ export default function SessionCheck() {
   const [skillLevel, setSkillLevel] = useState('Beginner');
   const [iconFile, setIconFile] = useState<File | null>(null);
   const [iconPreview, setIconPreview] = useState<string | null>(null);
-  const [asset,setAsset]=useState<ContentstackAsset|null>(null);
+  const [asset,setAsset]=useState<MyAsset|null>(null);
 
   if (!session) return null;
 
@@ -70,7 +70,7 @@ export default function SessionCheck() {
   };
   
   //publish asset function
-  const publishasset = async (asset:ContentstackAsset) => {
+  const publishasset = async (asset:MyAsset) => {
     if (!asset || !asset.uid) {
       console.error("Asset UID is not available");
       return;
@@ -156,7 +156,7 @@ export default function SessionCheck() {
               Upload Icon
               <input type="file" accept="image/*" className={styles.uploadInput} onChange={handleFileChange} />
             </label>
-
+            
             {/* Icon Preview */}
             {iconPreview && <img src={iconPreview} alt="Icon Preview" className={styles.iconPreview} />}
 
