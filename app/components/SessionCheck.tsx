@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from '../../styles/skills.module.css';
 import * as contentstack from '@contentstack/management'
 
-interface ContentstackAsset {
+type ContentstackAsset = {
   uid: string;
   url: string;
   title: string;
