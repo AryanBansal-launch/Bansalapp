@@ -7,6 +7,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from '../../styles/skills.module.css';
 import * as contentstack from '@contentstack/management'
 
+interface ContentstackAsset {
+  uid: string;
+  url: string;
+  title: string;
+  description: string;
+}
+
 export default function SessionCheck() {
   const { data: session } = useSession();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,7 +22,7 @@ export default function SessionCheck() {
   const [iconFile, setIconFile] = useState<File | null>(null);
   const [iconPreview, setIconPreview] = useState<string | null>(null);
   // const [skillIcon, setSkillIcon] = useState<string | null>(null);
-  const [asset,setAsset]=useState<any>(null);
+  const [asset,setAsset]=useState<ContentstackAsset|null>(null);
 
   if (!session) return null;
 
@@ -27,11 +34,11 @@ export default function SessionCheck() {
     setIconPreview(URL.createObjectURL(file)); // For local preview
   
     try {
-      const client = contentstack.client();
-      const stack = client.stack({
-        api_key: process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string,
-        management_token: process.env.NEXT_PUBLIC_CONTENTSTACK_MANAGEMENT_TOKEN as string,
-      });
+      // const client = contentstack.client();
+      // const stack = client.stack({
+      //   api_key: process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string,
+      //   management_token: process.env.NEXT_PUBLIC_CONTENTSTACK_MANAGEMENT_TOKEN as string,
+      // });
   
       // Contentstack API requires FormData to handle file uploads
       const formData = new FormData();
@@ -57,9 +64,9 @@ export default function SessionCheck() {
       if (response.ok) {
         console.log("Uploaded Asset:", data);
         // setSkillIcon(data.asset.url);
-        setAsset(data.asset); // Set the asset object here after the upload is successful
+        setAsset(data.asset); 
         toast.success("File uploaded successfully!");
-        await publishasset(data.asset); // Call publishasset only after the asset is uploaded
+        await publishasset(data.asset); 
       } else {
         console.error("Upload failed:", data);
         toast.error("Upload failed!");
@@ -70,7 +77,8 @@ export default function SessionCheck() {
     }
   };
   
-  const publishasset = async (asset: any) => {
+  //publish asset function
+  const publishasset = async (asset:ContentstackAsset) => {
     if (!asset || !asset.uid) {
       console.error("Asset UID is not available");
       return;
