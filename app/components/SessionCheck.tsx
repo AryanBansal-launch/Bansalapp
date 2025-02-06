@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../../styles/skills.module.css';
-import contentstack from '@contentstack/management'
+import * as contentstack from '@contentstack/management'
 
 interface MyAsset {
   uid: string;
@@ -30,12 +30,11 @@ export default function SessionCheck() {
     if (!file) return;
   
     setIconFile(file);
-    setIconPreview(URL.createObjectURL(file)); // For local preview
+    setIconPreview(URL.createObjectURL(file)); 
   
     try {
-      // Contentstack API requires FormData to handle file uploads
       const formData = new FormData();
-      formData.append("asset[upload]", file); // Correct way to send a file
+      formData.append("asset[upload]", file); 
       formData.append("asset[title]", skillName);
       formData.append("asset[description]", "Skill Icon");
   
@@ -92,6 +91,8 @@ export default function SessionCheck() {
       .catch((error) => console.error("Error publishing asset:", error));
   };
   
+
+  //publish entry function
   const publishentry = async () => {
     const client = contentstack.client();
     const entry = {
@@ -109,9 +110,9 @@ export default function SessionCheck() {
     .catch((error) => console.error(error))
    }
   
+   //logic to handle the addition of skill in the  entry
   const handleAddSkill = async () => {
     console.log('New Skill:', { skillName, skillLevel, iconFile });
-    //logic to handle the addition of skill in the  entry
     const client = contentstack.client();
     client.stack({ 
       api_key: process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string, 
@@ -141,8 +142,6 @@ export default function SessionCheck() {
         <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>
             <h2>Add New Skill</h2>
-
-            {/* Skill Name Input */}
             <input
               type="text"
               placeholder="Skill Name"
@@ -150,17 +149,12 @@ export default function SessionCheck() {
               value={skillName}
               onChange={(e) => setSkillName(e.target.value)}
             />
-
-            {/* Upload Icon Input */}
             <label className={styles.uploadLabel}>
               Upload Icon
               <input type="file" accept="image/*" className={styles.uploadInput} onChange={handleFileChange} />
             </label>
             
-            {/* Icon Preview */}
             {iconPreview && <img src={iconPreview} alt="Icon Preview" className={styles.iconPreview} />}
-
-            {/* Skill Level Dropdown */}
             <select
               className={styles.selectField}
               value={skillLevel}
@@ -170,7 +164,6 @@ export default function SessionCheck() {
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
-            {/* Buttons */}
             <button className={styles.addButton} onClick={handleAddSkill}>
               Add Skill
             </button>

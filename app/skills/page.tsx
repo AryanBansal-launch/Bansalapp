@@ -1,7 +1,8 @@
 import SkillBox from '../components/SkillBox';
 import styles from '../../styles/skills.module.css';
 import { getSkillsRes } from '@/helper';
-// import SessionCheck from '../components/SessionCheck';
+import SessionCheck from '../components/SessionCheck';
+// import contentstack from '@contentstack/management'
 
 interface Skill {
   logo: {
@@ -25,7 +26,7 @@ export default async function SkillsPage() {
   return (
     <div className={styles.skillsPage} style={{ paddingTop: "120px" }}>
       <h1 className={styles.pageTitle}>Skills & Technologies</h1>
-      {/* <SessionCheck /> */}
+      <SessionCheck />
       <div className={styles.skillsGrid}>
         {skills.map((skill, index) => (
           <SkillBox
