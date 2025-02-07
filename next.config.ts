@@ -1,19 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   async headers() {
     return [
       {
-        source: '/skills',
+        source: "/skills",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'max-age=60, s-maxage=120',
+            key: "Cache-Control",
+            value: "no-store, must-revalidate", // Disable caching
           },
         ],
       },
-    ]
+    ];
   },
 };
 
