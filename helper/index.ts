@@ -84,15 +84,22 @@ export const getPageRes = async (entryUrl: string): Promise<Page> => {
 };
 
 //for getting skills page
+
 export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
   const response = (await getEntryByUrl({
     contentTypeUid: "common_page",
-    entryUrl:"/skills",
+    entryUrl: "/skills",
     referenceFieldPath: undefined,
-    jsonRtePath: undefined
+    jsonRtePath: undefined,
   })) as Page[];
+
+  // Set caching behavior (s-maxage = 300s, stale-while-revalidate = 60s)
+  const headers = new Headers();
+  headers.set("Cache-Control", "s-maxage=300, stale-while-revalidate=60");
+
   return response[0];
 };
+
 
 //for getting About page
 export const getAboutRes = async (entryUrl: string): Promise<Page> => {
