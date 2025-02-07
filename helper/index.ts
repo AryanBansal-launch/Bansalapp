@@ -95,7 +95,7 @@ export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
 
   // Set caching behavior (s-maxage = 300s, stale-while-revalidate = 60s)
   const headers = new Headers();
-  headers.set("Cache-Control", "s-maxage=300, stale-while-revalidate=60");
+  headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
 
   return response[0];
 };
