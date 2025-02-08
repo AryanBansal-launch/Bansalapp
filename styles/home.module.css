@@ -295,13 +295,13 @@
 
 /* Image Animation */
 .imageContainer {
-  max-width: 35%;
+  max-width: 100%;
 }
 
 .profileImage {
-  width: 100%;
+  width: 200%;
   height: auto;
-  border-radius: 15px;
+  border-radius: 50%;
   object-fit: cover;
   /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); */
   opacity: 0;

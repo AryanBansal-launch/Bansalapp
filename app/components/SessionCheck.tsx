@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,7 +22,16 @@ export default function SessionCheck() {
   const [iconFile, setIconFile] = useState<File | null>(null);
   const [iconPreview, setIconPreview] = useState<string | null>(null);
   const [asset,setAsset]=useState<MyAsset|null>(null);
+  const [isFormValid, setIsFormValid] = useState(false);
 
+  useEffect(() => {
+    if (skillName.trim() !== '' && skillLevel !== '' && iconFile !== null) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  }, [skillName, skillLevel, iconFile]);
+  
   if (!session) return null;
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,6 +121,10 @@ export default function SessionCheck() {
   
    //logic to handle the addition of skill in the  entry
   const handleAddSkill = async () => {
+    if (!iconFile) {
+      toast.error("Please upload an icon before adding the skill!");
+      return;
+    }
     console.log('New Skill:', { skillName, skillLevel, iconFile });
     const client = contentstack.client();
     client.stack({ 
@@ -164,9 +177,14 @@ export default function SessionCheck() {
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
-            <button className={styles.addButton} onClick={handleAddSkill}>
-              Add Skill
-            </button>
+            <button
+            className={styles.addButton}
+            onClick={handleAddSkill}
+            disabled={!isFormValid} // Disable button when form is incomplete
+            style={{ opacity: isFormValid ? 1 : 0.5, cursor: isFormValid ? 'pointer' : 'not-allowed' }} 
+          >
+            Add Skill
+          </button>
             <button className={styles.closeButton} onClick={() => setIsModalOpen(false)}>
               Close
             </button>
@@ -176,3 +194,5 @@ export default function SessionCheck() {
     </>
   );
 }
+
+
