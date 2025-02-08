@@ -1,7 +1,7 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import Typed from 'typed.js';
 import { gethomeRes } from '@/helper';
-import { useEffect, useState } from 'react';
 import styles from '../styles/home.module.css';
 
 interface HomeProps {
@@ -16,12 +16,13 @@ interface HomeProps {
 
 export default function Home() {
   const [homeData, setHomeData] = useState<HomeProps | null>(null);
+  const descriptionRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     async function fetchHomeData() {
       try {
         const response = await gethomeRes('/');
-        const data = await response.page_components[0].aryan_banner;
+        const data = response.page_components[0].aryan_banner;
         console.log('Home Data frontend:', data);
         setHomeData(data);
       } catch (error) {
@@ -31,6 +32,23 @@ export default function Home() {
 
     fetchHomeData();
   }, []);
+
+  useEffect(() => {
+    if (homeData && descriptionRef.current) {
+
+      const descTyped = new Typed(descriptionRef.current, {
+        strings: ['WEB DEVELOPER !', 'INNOVATOR !', 'QUICK LEARNER !'],
+        typeSpeed: 40,
+        backSpeed: 20,
+        loop: true,
+        showCursor: false,
+      });
+
+      return () => {
+        descTyped.destroy();
+      };
+    }
+  }, [homeData]);
 
   if (!homeData) {
     return <div>Loading...</div>;
@@ -52,8 +70,13 @@ export default function Home() {
       </div>
       <div className={styles.overlay}>
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>{homeData.banner_title}</h1>
-          <p className={styles.description}>{homeData.banner_description}</p>
+          <h1 className={styles.title}>
+          {homeData.banner_title}
+          </h1>
+          <p className={styles.description}>
+            {homeData.banner_description} I am a{' '}
+            <span className={styles.skill} ref={descriptionRef}></span>
+          </p>
           <a href={homeData.go_to_resume.href} target="_blank" rel="noopener noreferrer">
             <button className={styles.resumeButton}>View Resume</button>
           </a>
@@ -69,4 +92,3 @@ export default function Home() {
     </div>
   );
 }
-

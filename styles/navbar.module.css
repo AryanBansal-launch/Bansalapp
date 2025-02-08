@@ -1,137 +1,28 @@
-   /* .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 30px;
-    background-color: #1c1c1c; 
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
-    position: sticky;
-    top: 0;
-    z-index: 1000; 
-    transition: all 0.3s ease;
-  }
-  
-  .navbar img {
-    cursor: pointer;
-    border-radius: 5px; 
-    object-fit: contain;
-    transition: transform 0.3s ease;
-  }
-  
-  .navbar img:hover {
-    transform: scale(1.1); 
-  }
-  
-  .navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 20px; 
-  }
-  
-  .navbar a {
-    font-size: 1rem;
-    font-weight: 500;
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  .navbar a:hover {
-    color: #0070f3; 
-    background-color: rgba(255, 255, 255, 0.1); 
-  }
-  
-  .navbar a:active {
-    color: #005bb5; 
-  }
-  
-  .navbar .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-  }
-  
-  .navbar .hamburger div {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-  
-  .navbar-mobile-menu {
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    background-color: #1c1c1c;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  @media (max-width: 768px) {
-    .navbar {
-      flex-wrap: wrap;
-      padding: 15px 20px;
-    }
-  
-    .navbar-links {
-      display: none;
-    }
-  
-    .navbar .hamburger {
-      display: flex;
-    }
-  
-    .navbar-mobile-menu {
-      display: flex;
-      width: 100%;
-      margin-top: 10px;
-    }
-  }
-  .activeLink {
-    color: #007bff;
-    font-weight: bold;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 4px;
-    transition: all 0.3s ease;
-  }
-  
-  .activeLink:hover {
-    color: #0056b3;
-    border-color: #0056b3;
-  }
-  
-   */
+/* 
    .navbar {
-    position: fixed; /* Makes it float */
+    position: fixed; 
     top: 20px;
     left: 50%;
     margin-bottom: 20px;
     transform: translateX(-50%);
-    width: 90%; /* Keep some space from edges */
+    width: 90%; 
     max-width: 1500px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 25px;
-    background-color: rgba(28, 28, 28, 0.8); /* Translucent background */
+    background-color: rgba(28, 28, 28, 0.8); 
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 10px; /* Rounded corners */
-    backdrop-filter: blur(7px); /* Frosted glass effect */
+    border-radius: 10px; 
+    backdrop-filter: blur(7px); 
     transition: all 0.3s ease-in-out;
     z-index: 1000;
   }
   
   .navbar.scrolled {
-    padding: 8px 20px; /* Reduce size when scrolled */
-    background-color: rgba(28, 28, 28, 0.6); /* Make it more transparent */
+    padding: 8px 20px; 
+    background-color: rgba(28, 28, 28, 0.6); 
   }
   
   .navbar img {
@@ -196,7 +87,7 @@
   .navbar:hover {
     box-shadow: 0 12px 30px rgba(66, 246, 249, 0.86); 
   }
-  /* Mobile Navbar */
+
   @media (max-width: 768px) {
     .navbar {
       width: 95%;
@@ -220,6 +111,160 @@
       padding: 10px;
     }
   }
+  .authButton {
+    background: linear-gradient(135deg, #6366f1, #9333ea);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .authButton:hover {
+    background: linear-gradient(135deg, #4f46e5, #7e22ce);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .authButton:active {
+    transform: translateY(0);
+  }
+   */
+
+   .navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 25px;
+    background-color: rgba(28, 28, 28, 0.8);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    backdrop-filter: blur(7px);
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+    margin-bottom: 20px;
+  }
+  
+  .navbar.scrolled {
+    padding: 8px 20px;
+    background-color: rgba(28, 28, 28, 0.6);
+  }
+  
+  .navbar img {
+    cursor: pointer;
+    border-radius: 5px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar img:hover {
+    transform: scale(1.1);
+  }
+  
+  .navbarLinks {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .navbar a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar a:hover {
+    color: #0070f3;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .activeLink {
+    color: #007bff;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .activeLink:hover {
+    color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Hamburger Menu */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .hamburger.open div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .hamburger.open div:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.open div:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Mobile Navbar */
+  @media (max-width: 768px) {
+    .navbar {
+      width: 95%;
+      padding: 12px 15px;
+    }
+  
+    .navbarLinks {
+      display: none;
+    }
+  
+    .hamburger {
+      display: flex;
+    }
+  
+    .navbarMobileMenu {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      background-color: rgba(28, 28, 28, 0.9);
+      border-radius: 10px;
+      padding: 10px;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
+    }
+  }
+  
+  /* Authentication Button */
   .authButton {
     background: linear-gradient(135deg, #6366f1, #9333ea);
     color: #fff;
