@@ -47,7 +47,7 @@ const Projects = () => {
     // const { navigation, social, logo, copyright } = projectData;
   return (
     <div className={styles.main} style={{ paddingTop: "120px" }}>
-      <h1 className="h1">My Projects</h1>
+      <h1 className={styles.heading}>Projects</h1>
       <div className={styles.grid}>
         {projectData.map((project: { project_title: string; project_description: string; project_thumbnail: string; links: {
           detail:{

@@ -27,7 +27,7 @@ export default async function SkillsPage() {
 
   return (
     <div className={styles.skillsPage} style={{ paddingTop: "120px" }}>
-      <h1 className={styles.pageTitle}>Skills & Technologies</h1>
+      <h1 className={styles.heading}>Skills & Technologies</h1>
       <SessionCheck />
       <div className={styles.skillsGrid}>
         {skills.map((skill, index) => (

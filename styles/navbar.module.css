@@ -1,138 +1,3 @@
-/* 
-   .navbar {
-    position: fixed; 
-    top: 20px;
-    left: 50%;
-    margin-bottom: 20px;
-    transform: translateX(-50%);
-    width: 90%; 
-    max-width: 1500px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 25px;
-    background-color: rgba(28, 28, 28, 0.8); 
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 10px; 
-    backdrop-filter: blur(7px); 
-    transition: all 0.3s ease-in-out;
-    z-index: 1000;
-  }
-  
-  .navbar.scrolled {
-    padding: 8px 20px; 
-    background-color: rgba(28, 28, 28, 0.6); 
-  }
-  
-  .navbar img {
-    cursor: pointer;
-    border-radius: 5px;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-  }
-  
-  .navbar img:hover {
-    transform: scale(1.1);
-  }
-  
-  .navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .navbar a {
-    font-size: 1rem;
-    font-weight: 500;
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  .navbar a:hover {
-    color: #0070f3;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .activeLink {
-    color: #007bff;
-    font-weight: bold;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 4px;
-    transition: all 0.3s ease;
-  }
-  
-  .activeLink:hover {
-    color: #0056b3;
-    border-color: #0056b3;
-  }
-  
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-  }
-  
-  .hamburger div {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-  .navbar:hover {
-    box-shadow: 0 12px 30px rgba(66, 246, 249, 0.86); 
-  }
-
-  @media (max-width: 768px) {
-    .navbar {
-      width: 95%;
-      padding: 12px 15px;
-    }
-  
-    .navbar-links {
-      display: none;
-    }
-  
-    .hamburger {
-      display: flex;
-    }
-  
-    .navbar-mobile-menu {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      background-color: rgba(28, 28, 28, 0.9);
-      border-radius: 10px;
-      padding: 10px;
-    }
-  }
-  .authButton {
-    background: linear-gradient(135deg, #6366f1, #9333ea);
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .authButton:hover {
-    background: linear-gradient(135deg, #4f46e5, #7e22ce);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
-  }
-  
-  .authButton:active {
-    transform: translateY(0);
-  }
-   */
 
    .navbar {
     position: fixed;
@@ -152,7 +17,6 @@
     backdrop-filter: blur(7px);
     transition: all 0.3s ease-in-out;
     z-index: 1000;
-    margin-bottom: 20px;
   }
   
   .navbar.scrolled {
@@ -190,6 +54,10 @@
   .navbar a:hover {
     color: #0070f3;
     background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar a img:hover {
+    background-color: none;
   }
   
   .activeLink {

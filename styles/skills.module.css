@@ -15,6 +15,14 @@
     font-weight: bold;
     letter-spacing: 2px;
   }
+  .heading {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #00ffff; /* Aqua text */
+    text-shadow: 0 2px 5px rgba(0, 255, 255, 0.7); /* Glow effect */
+    animation: glow 2s infinite alternate;
+  }
   
   .skillsGrid {
     display: grid;
