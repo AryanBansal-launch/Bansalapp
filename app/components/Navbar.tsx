@@ -60,7 +60,7 @@ export default function Navbar({ image }: NavbarProps) {
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <Link href="/" onClick={handleNavClick}>
         <img
-          src={image || (data?.logo?.url ?? "/default-logo.png")}
+          src={image || (data?.logo?.url)}
           alt="Logo"
           width={50}
           height={50}
