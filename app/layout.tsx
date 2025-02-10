@@ -17,6 +17,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer} from 'react-toastify';
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -29,7 +30,7 @@ export default function RootLayout({
         <SessionProvider>
       <ToastContainer />
         <Navbar />
-        <main>{children}</main>
+        <Suspense fallback={<div>Loading...</div>}><main>{children}</main></Suspense>
         <Footer />
         </SessionProvider>
       </body>
