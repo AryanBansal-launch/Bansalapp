@@ -85,24 +85,16 @@ interface Project {
     detail: Link;
   };
 }
-interface ProjectsProps {
-    map(arg0: (project: { project_title: string; project_description: string; project_thumbnail: string; links: { code_link: { href: string; }; deployed_project_link: { href: string; }; detail:{href:string;}; }; }, index: Key | null | undefined) => import("react").JSX.Element): import("react").ReactNode;
-    projects: Project[];
-  }
 
-export const revalidate = 0;
+export const revalidate = 0; // No caching (forces fresh fetch every request)
 
 export default async function Projects() {
-  let projectData: ProjectsProps = { 
-    projects: [], 
-    map: (fn) => projectData.projects.map(fn) 
-  };
+  let projectData: Project[] = []; // Correct type
 
   try {
-    const response = await getProjectsRes('/projects'); // Fetch server-side
-    // console.log("Project Data:", response);
-    console.log("projects are being rendered!");
-    projectData = response; // Store only the projects array
+    const response = await getProjectsRes('/projects'); // Fetch data
+    console.log("Projects are being rendered!");
+    projectData = response || []; // Ensure response structure is correct
   } catch (error) {
     console.error("Error fetching project data:", error);
   }
@@ -111,17 +103,21 @@ export default async function Projects() {
     <div className={styles.main} style={{ paddingTop: "120px" }}>
       <h1 className={styles.heading}>Projects</h1>
       <div className={styles.grid}>
-        {projectData.map((project, index) => (
-          <ProjectCard
-            key={index}
-            title={project.project_title}
-            description={project.project_description}
-            image={project.project_thumbnail}
-            codelink={project.links.code_link.href}
-            demolink={project.links.deployed_project_link.href}
-            detailink={project.links.detail.href}
-          />
-        ))}
+        {projectData.length > 0 ? (
+          projectData.map((project, index) => (
+            <ProjectCard
+              key={index}
+              title={project.project_title}
+              description={project.project_description}
+              image={project.project_thumbnail}
+              codelink={project.links.code_link.href}
+              demolink={project.links.deployed_project_link.href}
+              detailink={project.links.detail.href}
+            />
+          ))
+        ) : (
+          <p>No projects found.</p>
+        )}
       </div>
     </div>
   );
