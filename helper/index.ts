@@ -127,8 +127,7 @@ export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
         "Content-Type": "application/json",
         "api_key": process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string,
         "access_token": process.env.NEXT_PUBLIC_CONTENTSTACK_DELIVERY_TOKEN as string,
-      },
-      next: { revalidate: 2 },  
+      }, 
     }
   );
 

@@ -4,11 +4,11 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/skills',  // You can modify this path if needed
+        source: '/skills',  
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate', // Ensures no caching
+            value: 'no-store', 
           },
         ],
       },
