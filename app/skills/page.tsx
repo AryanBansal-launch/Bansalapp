@@ -1,4 +1,3 @@
-'use server';
 import SkillBox from '../components/SkillBox';
 import styles from '../../styles/skills.module.css';
 import { getSkillsRes } from '@/helper';
