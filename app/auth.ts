@@ -6,7 +6,7 @@ const allowedUsernames = ["AryanBansal-launch"];
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [GitHub],
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ profile }) {
       if (typeof profile?.login === "string" && allowedUsernames.includes(profile.login)) {
         return true; // Allow sign-in
       }
