@@ -11,7 +11,7 @@ interface Skill {
   skill_name: string;
   level: string;
 }
-export const revalidate = 10;
+// export const revalidate = 10;
 
 export default async function SkillsPage() {
   let skills: Skill[] = [];

@@ -4,6 +4,7 @@ import getConfig from "next/config";
 import { FooterProps,HeaderProps} from "../typescript/layout";
 import { getEntry, getEntryById, getEntryByUrl } from "../contentstack-sdk";
 import { Header } from "next/dist/lib/load-custom-routes";
+import { unstable_cache as cache } from "next/cache";
 
 // const { publicRuntimeConfig } = getConfig();
 // const envConfig = process.env.CONTENTSTACK_API_KEY
@@ -85,20 +86,30 @@ export const getPageRes = async (entryUrl: string): Promise<Page> => {
 
 //for getting skills page
 
-export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
-  const response = (await getEntryByUrl({
-    contentTypeUid: "common_page",
-    entryUrl: "/skills",
-    referenceFieldPath: undefined,
-    jsonRtePath: undefined,
-  })) as Page[];
+// export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
+//   const response = (await getEntryByUrl({
+//     contentTypeUid: "common_page",
+//     entryUrl: "/skills",
+//     referenceFieldPath: undefined,
+//     jsonRtePath: undefined,
+//   })) as Page[];
 
-  // Set caching behavior (s-maxage = 300s, stale-while-revalidate = 60s)
-  // const headers = new Headers();
-  // headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
+//   return response[0];
+// };
+export const getSkillsRes = cache(
+  async (entryUrl: string) => {
+    const response = await getEntryByUrl({
+      contentTypeUid: "common_page",
+      entryUrl: "/skills",
+      referenceFieldPath: undefined,
+      jsonRtePath: undefined,
+    }) as Page[];
 
-  return response[0];
-};
+    return response[0];
+  },
+  ["skills-data"], // Cache key
+  { revalidate: 10 } // ISR every 10 seconds
+);
 
 
 //for getting About page
