@@ -13,8 +13,8 @@
 //     console.log(error);
 //   }
 // }
-export default {
-    async fetch(request, context) {
+export default 
+    async function handler(request, context) {
       try {
         const parsedUrl = new URL(request.url);
         const route = parsedUrl.pathname;
@@ -36,6 +36,5 @@ export default {
           headers: { "Content-Type": "application/json" },
         });
       }
-    },
-  };
+    };
   
