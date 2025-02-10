@@ -97,6 +97,15 @@ export default function Navbar({ image }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const { data: session } = useSession();
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSignIn = async () => {
+    try {
+      await signIn("github");
+    } catch (err) {
+      setError("You are not authorized to sign in.");
+    }
+  };
 
   async function getHeaderInfo() {
     try {
@@ -166,7 +175,7 @@ export default function Navbar({ image }: NavbarProps) {
             Sign Out
           </button>
         ) : (
-          <button className={styles.authButton} onClick={() => signIn("github")}>
+          <button className={styles.authButton} onClick={handleSignIn}>
             Admin Sign In
           </button>
         )}

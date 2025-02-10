@@ -1,0 +1,43 @@
+
+  .errorContainer {
+    text-align: center;
+    padding: 50px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    background-color: #ffe6e6; /* Light red background */
+    border: 1px solid #ff4d4d; /* Red border */
+    border-radius: 8px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.2);
+  }
+  
+  .errorHeading {
+    color: #d60000; /* Dark red */
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .errorMessage {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .backButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff4d4d; /* Red */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .backButton:hover {
+    background-color: #cc0000; /* Darker red */
+  }
+  
