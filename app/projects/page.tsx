@@ -2,7 +2,7 @@
 
 import styles from '../../styles/projects.module.css';
 import ProjectCard from '../components/ProjectCard';
-import { getProjectsRes } from '@/helper'; // Assuming getProjectsRes fetches data
+import { getProjectsRes } from '@/helper'; 
 import { useState, useEffect, Key } from 'react';
 
 interface Link {
@@ -24,6 +24,7 @@ interface ProjectsProps {
   map(arg0: (project: { project_title: string; project_description: string; project_thumbnail: string; links: { code_link: { href: string; }; deployed_project_link: { href: string; }; detail:{href:string;}; }; }, index: Key | null | undefined) => import("react").JSX.Element): import("react").ReactNode;
   projects: Project[];
 }
+export const revalidate = 0;
 
 const Projects = () => {
   const [projectData, setprojectData] = useState<ProjectsProps | null>(null);

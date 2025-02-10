@@ -2,7 +2,6 @@ import SkillBox from '../components/SkillBox';
 import styles from '../../styles/skills.module.css';
 import { getSkillsRes } from '@/helper';
 import SessionCheck from '../components/SessionCheck';
-// import contentstack from '@contentstack/management'
 
 interface Skill {
   logo: {
@@ -11,6 +10,8 @@ interface Skill {
   skill_name: string;
   level: string;
 }
+
+//added this
 export const revalidate = 0;
 
 export default async function SkillsPage() {
@@ -18,9 +19,7 @@ export default async function SkillsPage() {
 
   try {
     const res = await getSkillsRes("/skills");
-    // console.log("Skills from frontend:", res);
     skills = res.page_components[0].skills.skill_set as Skill[];
-    // console.log("Skills from frontend:", skills);
     console.log("Skills are being rendered!");
   } catch (err) {
     console.error('Error fetching skills data:', err);

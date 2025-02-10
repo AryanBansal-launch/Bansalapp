@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: '/projects',  
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store', 
+          },
+        ],
+      },
     ];
   },
 };
