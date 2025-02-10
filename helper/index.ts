@@ -163,7 +163,7 @@ export const getProjectsRes = async (entryUrl: string): Promise<any> => {
   });
 
   const data = (response as any[])[0]; 
-  console.log("projects Data from backend:", data);
+  // console.log("projects Data from backend:", data);
   return data.page_components[0].project.projects.map((project: any) => ({
     project_title: project.project_title,
     project_description: project.project_description,

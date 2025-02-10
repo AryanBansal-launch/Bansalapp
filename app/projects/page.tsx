@@ -85,16 +85,24 @@ interface Project {
     detail: Link;
   };
 }
+interface ProjectsProps {
+    map(arg0: (project: { project_title: string; project_description: string; project_thumbnail: string; links: { code_link: { href: string; }; deployed_project_link: { href: string; }; detail:{href:string;}; }; }, index: Key | null | undefined) => import("react").JSX.Element): import("react").ReactNode;
+    projects: Project[];
+  }
 
 export const revalidate = 0;
 
 export default async function Projects() {
-  let projectData: Project[] = [];
+  let projectData: ProjectsProps = { 
+    projects: [], 
+    map: (fn) => projectData.projects.map(fn) 
+  };
 
   try {
     const response = await getProjectsRes('/projects'); // Fetch server-side
-    console.log("Project Data:", response);
-    projectData = response.projects; // Store only the projects array
+    // console.log("Project Data:", response);
+    console.log("projects are being rendered!");
+    projectData = response; // Store only the projects array
   } catch (error) {
     console.error("Error fetching project data:", error);
   }
