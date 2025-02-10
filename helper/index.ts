@@ -96,20 +96,52 @@ export const getPageRes = async (entryUrl: string): Promise<Page> => {
 
 //   return response[0];
 // };
-export const getSkillsRes = cache(
-  async (entryUrl: string) => {
-    const response = await getEntryByUrl({
-      contentTypeUid: "common_page",
-      entryUrl: "/skills",
-      referenceFieldPath: undefined,
-      jsonRtePath: undefined,
-    }) as Page[];
 
-    return response[0];
-  },
-  ["skills-data"], // Cache key
-  { revalidate: 10 } // ISR every 10 seconds
-);
+// export const getSkillsRes = cache(
+//   async (entryUrl: string) => {
+//     const response = await getEntryByUrl({
+//       contentTypeUid: "common_page",
+//       entryUrl: "/skills",
+//       referenceFieldPath: undefined,
+//       jsonRtePath: undefined,
+//     }) as Page[];
+
+//     return response[0];
+//   },
+//   ["skills-data"], // Cache key
+//   { revalidate: 10 } // ISR every 10 seconds
+// );
+
+interface Skill {
+  skill_name: string;
+  level: string;
+  logo: { url: string };
+}
+
+export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
+  const response = await fetch(
+    `https://cdn.contentstack.io/v3/content_types/common_page/entries/blt3c15dff86ebb6b6f`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "api_key": process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string,
+        "access_token": process.env.NEXT_PUBLIC_CONTENTSTACK_DELIVERY_TOKEN as string,
+      },
+      next: { revalidate: 2 }, 
+      cache: "force-cache", 
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch skills data: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  // console.log("Skills Data from backend:", data);
+  return data.entry;
+};
+
 
 
 //for getting About page

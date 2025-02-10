@@ -18,6 +18,7 @@ export default async function SkillsPage() {
 
   try {
     const res = await getSkillsRes("/skills");
+    // console.log("Skills from frontend:", res);
     skills = res.page_components[0].skills.skill_set as Skill[];
     // console.log("Skills from frontend:", skills);
     console.log("Skills are being rendered!");
