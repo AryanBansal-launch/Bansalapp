@@ -44,7 +44,6 @@ const Page = () => {
 
   return (
     <div className={styles.projectDetailPage} style={{ paddingTop: "150px" }}>
-      {/* <h1 className='h1'>Project Details</h1> */}
         <div  className={styles.projectCard}>
           <h2 className='h1'>{projectData.project_title}</h2>
           {projectData.thumbnail_image && (

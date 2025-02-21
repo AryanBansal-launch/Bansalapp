@@ -8,12 +8,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async signIn({ profile }) {
       if (typeof profile?.login === "string" && allowedUsernames.includes(profile.login)) {
-        return true; // Allow sign-in
+        return true; 
       }
-      throw new Error("Unauthorized User"); // Show an error
+      throw new Error("Unauthorized User"); 
     },
   },
   pages: {
-    error: "/auth/error", // Redirect unauthorized users
+    error: "/auth/error", 
   },
 });

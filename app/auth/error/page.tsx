@@ -4,7 +4,7 @@ import styles from "../../../styles/error.module.css";
 
 export default function AuthErrorPage() {
   const searchParams = useSearchParams();
-  const error = searchParams.get("error") || "Access Denied"; // Retrieve error directly from URL
+  const error = searchParams.get("error") || "Access Denied"; 
 
   return (
     <div className={styles.errorContainer}>
