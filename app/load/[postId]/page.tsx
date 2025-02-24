@@ -1,5 +1,15 @@
 import { notFound } from "next/navigation";
-
+interface Comment {
+    postId: number;
+    id: number;
+    name: string;
+    email: string;
+    body: string;
+    reversedBody: string;
+    uppercaseBody: string;
+    vowels: number;
+    consonants: number;
+  }
 const Page = async ({ params }: { params: { postId: string } }) => {
   const { postId } = await params;
 //   console.log("postId is", postId);
@@ -63,7 +73,7 @@ const Page = async ({ params }: { params: { postId: string } }) => {
           <div style={{ marginTop: "20px" }}>
             <h3>Processed Comments:</h3>
             <ul>
-              {data.comments.map((comment: any) => (
+              {data.comments.map((comment: Comment) => (
                 <li
                   key={comment.id}
                   style={{
