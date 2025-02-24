@@ -50,6 +50,11 @@ const Page = async ({
             style={{ width: "100%", height: "auto", borderRadius: "10px", marginTop: "10px" }}
           />
         )}
+        <img
+            src="https://media.jax.org/m/ad05e3c19f2e1437/webimage-HeroImage_Envision1.png.jpg"
+            alt="Post Image"
+            style={{ width: "100%", height: "auto", borderRadius: "10px", marginTop: "10px" }}
+          />
 
         {data.comments?.length > 0 && (
           <div style={{ marginTop: "20px" }}>

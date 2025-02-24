@@ -24,6 +24,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: '/load',  
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store', 
+          },
+        ],
+      },
     ];
   },
 };
