@@ -24,7 +24,7 @@ export default async function Projects() {
 
   try {
     const response = await getProjectsRes('/projects'); // Fetch data
-    // console.log("Projects are being rendered!");
+    // console.log(response);
     projectData = response || []; // Ensure response structure is correct
   } catch (error) {
     console.error("Error fetching project data:", error);
