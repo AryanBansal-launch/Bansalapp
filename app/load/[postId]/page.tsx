@@ -12,12 +12,11 @@ interface Comment {
   consonants: number;
 }
 
-interface PageProps {
-  params: Record<string, string>; // ✅ Fix for TypeScript error
-}
-
-const Page = async ({ params }: PageProps) => {
-  const postId = params.postId;
+const Page = async ({
+    params,
+  }: {
+    params: Promise<{ postId: string }>}) => {
+  const {postId}=await params;
 
   if (!postId) {
     return notFound();
