@@ -11,7 +11,7 @@ interface Comment {
     consonants: number;
   }
 const Page = async ({ params }: { params: { postId: string } }) => {
-  const { postId } = await params;
+  const { postId } = params;
 //   console.log("postId is", postId);
 
   try {
