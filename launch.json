@@ -2,14 +2,9 @@
     "redirects": [
       {
         "source": "/projects(.*)",
-        "destination": "/skills",
+        "destination": "/skills",              
         "statusCode": 308
       },
-    //   {
-    //     "source": "/load(.*)",
-    //     "destination": "/contact",
-    //     "statusCode": 308
-    //   },
       {
         "source": "/contact",
         "destination": "/skills",
