@@ -1,9 +1,9 @@
 {
     "redirects": [
       {
-        "source": "/projects",
+        "source": "/projects(.*)",
         "destination": "/contact",
-        "statusCode": 308
+        "statusCode": 307
       }
     ]
   }
