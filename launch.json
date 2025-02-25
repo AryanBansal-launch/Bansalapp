@@ -5,9 +5,14 @@
         "destination": "/skills",
         "statusCode": 308
       },
+    //   {
+    //     "source": "/load(.*)",
+    //     "destination": "/contact",
+    //     "statusCode": 308
+    //   },
       {
-        "source": "/load(.*)",
-        "destination": "/contact",
+        "source": "/contact",
+        "destination": "/skills",
         "statusCode": 308
       }
     ]
