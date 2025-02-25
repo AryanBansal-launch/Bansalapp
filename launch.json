@@ -4,6 +4,11 @@
         "source": "/projects(.*)",
         "destination": "/skills",
         "statusCode": 308
+      },
+      {
+        "source": "/load",
+        "destination": "/contact",
+        "statusCode": 308
       }
     ]
   }
