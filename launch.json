@@ -3,7 +3,7 @@
       {
         "source": "/projects",
         "destination": "/contact",
-        "statusCode": 307
+        "statusCode": 308
       }
     ]
   }
