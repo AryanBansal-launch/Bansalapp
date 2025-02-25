@@ -1,8 +1,8 @@
 {
     "redirects": [
       {
-        "source": "/load(.*)",
-        "destination": "/contact",
+        "source": "/projects(.*)",
+        "destination": "/skills",
         "statusCode": 308
       }
     ]
