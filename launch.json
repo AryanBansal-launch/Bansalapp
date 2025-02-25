@@ -1,0 +1,10 @@
+{
+    "redirects": [
+      {
+        "source": "/projects(.*)",
+        "destination": "/contact",
+        "statusCode": 308
+      }
+    ]
+  }
+  
