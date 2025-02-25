@@ -1,0 +1,10 @@
+{
+    "redirects": [
+      {
+        "source": "/about",
+        "destination": "/contact",
+        "statusCode": 307
+      }
+    ]
+  }
+  
