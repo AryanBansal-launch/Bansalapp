@@ -6,7 +6,7 @@
         "statusCode": 308
       },
       {
-        "source": "/contact",
+        "source": "/contact(.*)",
         "destination": "/skills",
         "statusCode": 308
       }
