@@ -1,7 +1,7 @@
 {
     "redirects": [
       {
-        "source": "/about(.*)",
+        "source": "/load(.*)",
         "destination": "/contact",
         "statusCode": 308
       }
