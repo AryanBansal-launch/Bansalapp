@@ -2,12 +2,12 @@
     "redirects": [
       {
         "source": "/projects(.*)",
-        "destination": "/contact",              
+        "destination": "/skills",              
         "statusCode": 308
       },
       {
         "source": "/about",
-        "destination": "/contact",
+        "destination": "/skills",
         "statusCode": 308
     }
 ]
