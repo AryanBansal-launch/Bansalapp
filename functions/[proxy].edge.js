@@ -9,7 +9,7 @@
 //   return fetch(request);
 // }
 const RSC_REDIRECT_PATHS = [
-  '/contact'
+  '/about','/projects','/skills'
 ];
 const RSC_HEADER = 'rsc';
 const RSC_HEADER_VALUE = '1';

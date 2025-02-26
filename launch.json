@@ -7,7 +7,7 @@
       },
       {
         "source": "/about",
-        "destination": "/skills",
+        "destination": "/contact",
         "statusCode": 308
     }
 ]
