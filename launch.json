@@ -7,7 +7,7 @@
       },
       {
         "source": "/about(.*)",
-        "destination": "/contact(.*)",
+        "destination": "/contact",
         "statusCode": 308
 }
     ]
