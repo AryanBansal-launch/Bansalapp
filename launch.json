@@ -1,14 +1,14 @@
 {
     "redirects": [
       {
-        "source": "/projects",
+        "source": "/test3",
         "destination": "/contact",              
         "statusCode": 308
       }
 ],
 "rewrites": [
     {
-      "source": "/about",
+      "source": "/test4",
       "destination": "/contact"
     }
   ]
