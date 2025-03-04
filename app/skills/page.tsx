@@ -12,7 +12,7 @@ interface Skill {
 }
 
 //added this to make caching work
-export const revalidate = 0;
+// export const revalidate = 0;
 
 export default async function SkillsPage() {
   let skills: Skill[] = [];
