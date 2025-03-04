@@ -4,11 +4,12 @@
         "source": "/projects",
         "destination": "/contact",              
         "statusCode": 308
-      },
-      {
-        "source": "/about",
-        "destination": "/contact",
-        "statusCode": 308
+      }
+],
+"rewrites": [
+    {
+      "source": "/blog/:slug/:postId",
+      "destination": "/wp/pages/blogs?action=detail&page_id=:postId"
     }
-]
+  ]
 }
