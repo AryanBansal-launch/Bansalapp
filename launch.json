@@ -8,8 +8,8 @@
 ],
 "rewrites": [
     {
-      "source": "/blog/:slug/:postId",
-      "destination": "/wp/pages/blogs?action=detail&page_id=:postId"
+      "source": "/about",
+      "destination": "/contact"
     }
   ]
 }
