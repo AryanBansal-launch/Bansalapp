@@ -1,8 +1,8 @@
 {
     "redirects": [
       {
-        "source": "/contact",
-        "destination": "/about",              
+        "source": "/test3",
+        "destination": "/contact",              
         "statusCode": 308
       }
 ],
@@ -15,7 +15,7 @@
   "cache": {
     "cachePriming": {
       "urls": [
-        "/contact"
+        "/skills"
       ]
     }
   }
