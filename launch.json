@@ -1,15 +1,15 @@
 {
     "redirects": [
       {
-        "source": "/contact",
-        "destination": "/about",             
+        "source": "/test3",
+        "destination": "/contact",             
         "statusCode": 308
       }
 ],
 "rewrites": [
     {
       "source": "/test4",
-      "destination": "/contact"
+      "destination": "/about"
     }
   ],
   "cache": {
