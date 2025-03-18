@@ -8,18 +8,14 @@
 ],
 "rewrites": [
     {
-      "source": "/test4",
+      "source": "/about",
       "destination": "/contact"
-    },
-    {
-      "source": "/test5",
-      "destination": "/test6"
     }
   ],
   "cache": {
     "cachePriming": {
       "urls": [
-        "/contact"
+        "/about"
       ]
     }
   }
