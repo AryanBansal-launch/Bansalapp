@@ -9,7 +9,7 @@
 "rewrites": [
     {
       "source": "/test4",
-      "destination": "/about"
+      "destination": "/contact"
     }
   ],
   "cache": {
