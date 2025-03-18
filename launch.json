@@ -10,6 +10,10 @@
     {
       "source": "/test4",
       "destination": "/contact"
+    },
+    {
+      "source": "/test5",
+      "destination": "/test6"
     }
   ],
   "cache": {
