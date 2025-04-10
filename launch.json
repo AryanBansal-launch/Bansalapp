@@ -2,7 +2,7 @@
     "redirects": [
       {
         "source": "/test3",
-        "destination": "/about",             
+        "destination": "/contact",             
         "statusCode": 308
       }
 ],
