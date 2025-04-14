@@ -4,16 +4,16 @@
         "source": "/test3",
         "destination": "/contact",             
         "statusCode": 308
+      },
+      {
+        "source":"/testpage",
+        "destination":"https://openai.com/"
       }
 ],
 "rewrites": [
     {
       "source": "/about",
       "destination": "/contact"
-    },
-    {
-      "source":"/testpage",
-      "destination":"https://openai.com/"
     }
   ],
   "cache": {
