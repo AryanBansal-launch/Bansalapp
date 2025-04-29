@@ -8,6 +8,10 @@
       {
         "source":"/testpage",
         "destination":"https://openai.com/"
+      },
+        {
+        "source":"/incorrect",
+        "destination":"/about"
       }
 ],
 "rewrites": [
@@ -19,7 +23,6 @@
   "cache": {
     "cachePriming": {
       "urls": [
-        "/about",
           "/incorrect"
       ]
     }
