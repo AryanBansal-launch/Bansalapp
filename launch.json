@@ -19,7 +19,8 @@
   "cache": {
     "cachePriming": {
       "urls": [
-        "/about"
+        "/about",
+          "/incorrect"
       ]
     }
   }
