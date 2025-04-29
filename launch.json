@@ -12,7 +12,7 @@
 ],
 "rewrites": [
     {
-      "source": "/about",
+      "source": "/test4",
       "destination": "/contact"
     }
   ],
