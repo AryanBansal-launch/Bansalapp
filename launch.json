@@ -19,12 +19,5 @@
       "source": "/test4",
       "destination": "/contact"
     }
-  ],
-  "cache": {
-    "cachePriming": {
-      "urls": [
-          "/incorrect"
-      ]
-    }
-  }
+  ]
 }
