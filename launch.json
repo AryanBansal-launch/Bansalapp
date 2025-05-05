@@ -16,15 +16,14 @@
 ],
 "rewrites": [
     {
-      "source": "/test4",
+      "source": "/about",
       "destination": "/contact"
     }
   ],
     "cache": {
     "cachePriming": {
       "urls": [
-          "/incorrect",
-          "/about"
+          "/incorrect"
       ]
     }
   }
