@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import Typed from "typed.js";
 import { gethomeRes } from "@/helper";
 import styles from "../styles/home.module.css";
-import ChatBot from "./components/ChatBot";
 
 interface HomeProps {
   banner_image: { url: string };
@@ -90,7 +89,6 @@ export default function Home() {
             className={styles.profileImage}
           />
         </div>
-        <ChatBot />
       </div>
     </div>
   );

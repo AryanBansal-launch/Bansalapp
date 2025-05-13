@@ -10,20 +10,20 @@
         "destination":"https://openai.com/"
       },
         {
-        "source":"/incorrect",
+        "source":"/incorrect1",
         "destination":"/about"
       }
 ],
 "rewrites": [
     {
-      "source": "/about",
+      "source": "/incorrect2",
       "destination": "/contact"
     }
   ],
     "cache": {
     "cachePriming": {
       "urls": [
-          "/incorrect"
+          "/about"
       ]
     }
   }
