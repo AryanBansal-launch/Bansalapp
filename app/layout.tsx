@@ -18,6 +18,7 @@ import Footer from './components/Footer';
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer} from 'react-toastify';
 import { Suspense } from "react";
+import ChatBot from "./components/ChatBot";
 
 export default function RootLayout({
   children,
@@ -31,6 +32,7 @@ export default function RootLayout({
       <ToastContainer />
         <Navbar />
         <Suspense fallback={<div>Loading...</div>}><main>{children}</main></Suspense>
+        <ChatBot />
         <Footer />
         </SessionProvider>
       </body>

@@ -1,8 +1,9 @@
-'use client';
-import React, { useEffect, useState, useRef } from 'react';
-import Typed from 'typed.js';
-import { gethomeRes } from '@/helper';
-import styles from '../styles/home.module.css';
+"use client";
+import React, { useEffect, useState, useRef } from "react";
+import Typed from "typed.js";
+import { gethomeRes } from "@/helper";
+import styles from "../styles/home.module.css";
+import ChatBot from "./components/ChatBot";
 
 interface HomeProps {
   banner_image: { url: string };
@@ -21,12 +22,12 @@ export default function Home() {
   useEffect(() => {
     async function fetchHomeData() {
       try {
-        const response = await gethomeRes('/');
+        const response = await gethomeRes("/");
         const data = response.page_components[0].aryan_banner;
-        console.log('Home Data frontend:', data);
+        console.log("Home Data frontend:", data);
         setHomeData(data);
       } catch (error) {
-        console.error('Error fetching home data:', error);
+        console.error("Error fetching home data:", error);
       }
     }
 
@@ -35,9 +36,8 @@ export default function Home() {
 
   useEffect(() => {
     if (homeData && descriptionRef.current) {
-
       const descTyped = new Typed(descriptionRef.current, {
-        strings: ['WEB DEVELOPER !', 'INNOVATOR !', 'QUICK LEARNER !'],
+        strings: ["WEB DEVELOPER !", "INNOVATOR !", "QUICK LEARNER !"],
         typeSpeed: 40,
         backSpeed: 20,
         loop: true,
@@ -70,14 +70,16 @@ export default function Home() {
       </div>
       <div className={styles.overlay}>
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>
-          {homeData.banner_title}
-          </h1>
+          <h1 className={styles.title}>{homeData.banner_title}</h1>
           <p className={styles.description}>
-            {homeData.banner_description} I am a{' '}
+            {homeData.banner_description} I am a{" "}
             <span className={styles.skill} ref={descriptionRef}></span>
           </p>
-          <a href={homeData.go_to_resume.href} target="_blank" rel="noopener noreferrer">
+          <a
+            href={homeData.go_to_resume.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <button className={styles.resumeButton}>View Resume</button>
           </a>
         </div>
@@ -88,6 +90,7 @@ export default function Home() {
             className={styles.profileImage}
           />
         </div>
+        <ChatBot />
       </div>
     </div>
   );
