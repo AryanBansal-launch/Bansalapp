@@ -12,10 +12,6 @@
         {
         "source":"/incorrect1",
         "destination":"/about"
-      },
-     {
-        "source":"/",
-        "destination":"https://openai.com/"
       }
 ],
 "rewrites": [
