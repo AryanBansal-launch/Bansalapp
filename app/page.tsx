@@ -74,13 +74,21 @@ export default function Home() {
             {homeData.banner_description} I am a{" "}
             <span className={styles.skill} ref={descriptionRef}></span>
           </p>
-          <a
-            href={homeData.go_to_resume.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className={styles.resumeButton}>View Resume</button>
-          </a>
+          <div className={styles.buttonGroup}>
+            <a
+              href={homeData.go_to_resume.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className={styles.resumeButton}>View Resume</button>
+            </a>
+            <a
+              href="https://drive.google.com/uc?export=download&id=1ymUdojRoLzYUEkSCGo7dq5Hk8-WBsY1h"
+              download
+            >
+              <button className={styles.resumeButton}>Download Resume</button>
+            </a>
+          </div>
         </div>
         <div className={styles.imageContainer}>
           <img

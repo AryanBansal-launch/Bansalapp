@@ -241,3 +241,8 @@
     flex-direction: column-reverse;
   }
 }
+.buttonGroup {
+  display: flex;
+  gap: 1rem; /* Adjust spacing as needed */
+  flex-wrap: wrap;
+}

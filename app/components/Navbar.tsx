@@ -94,7 +94,7 @@ export default function Navbar({ image }: NavbarProps) {
             </Link>
           );
         })}
-        <Link href="/load">load</Link>
+        {/* <Link href="/load">load</Link> */}
 
         {/* Authentication Buttons */}
         {session ? (
