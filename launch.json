@@ -12,6 +12,14 @@
         {
         "source":"/incorrect1",
         "destination":"/about"
+      },
+        {
+        "source":"/incorrect1",
+        "destination":"/contact"
+      },
+        {
+        "source":"/test3",
+        "destination":"/about"
       }
 ],
 "rewrites": [
