@@ -6,15 +6,17 @@
         "statusCode": 308
       },
       {
-        "source":"/projects",
-        "destination":"/about",
-        "statusCode":307
+        "source":"/testpage",
+        "destination":"https://openai.com/"
       },
-      {
-        "source":"/_nuxt/(.*)",
-        "destination":"/about",
-        "statusCode":307
-      }
+        {
+        "source":"/incorrect1",
+        "destination":"/about"
+      },
+    {
+        "source":"/about",
+        "destination":"/contact"
+    }
 ],
 "rewrites": [
     {
@@ -25,6 +27,8 @@
     "cache": {
     "cachePriming": {
       "urls": [
+          "/about",
+          "/contact",
           "/about"
       ]
     }
