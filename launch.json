@@ -13,10 +13,10 @@
         "source":"/incorrect1",
         "destination":"/about"
       },
-        {
-             "source":"/about",
+    {
+        "source":"/about",
         "destination":"/contact"
-        }
+    }
 ],
 "rewrites": [
     {
