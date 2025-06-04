@@ -1,7 +1,7 @@
 const RSC_REDIRECT_PATHS = [
     '/about','/projects','/skills'
   ];
-  const RSC_HEADER = 'rsc';
+  const RSC_HEADER = 'Rsc';
   const RSC_HEADER_VALUE = '1';
   const RSC_QUERY_PARAM = 'rsc';
   
