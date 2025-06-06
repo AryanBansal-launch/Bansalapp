@@ -6,7 +6,7 @@ export default function Page() {
 
   return (
     <div style={{ paddingTop: "120px", textAlign: "center" }}>
-      <h2>Available Posts</h2>
+      <h2>Available Posts from the API</h2>
       <ul style={{ listStyle: "none", padding: 0 }}>
         {posts.map((postId) => (
           <li key={postId} style={{ marginBottom: "10px" }}>
