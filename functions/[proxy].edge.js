@@ -6,6 +6,7 @@ const RSC_REDIRECT_PATHS = [
   const RSC_QUERY_PARAM = 'rsc';
   
   export default function handler(request) {
+    console.log("This is an edge functions test");
     const parsedUrl = new URL(request.url);
     const route = parsedUrl.pathname;
     const rscQueryParamExists = !!parsedUrl.searchParams.get(RSC_QUERY_PARAM);
