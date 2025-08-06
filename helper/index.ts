@@ -112,13 +112,13 @@ export const getPageRes = async (entryUrl: string): Promise<Page> => {
 //   { revalidate: 10 } // ISR every 10 seconds
 // );
 
-interface Skill {
-  skill_name: string;
-  level: string;
-  logo: { url: string };
-}
+// interface Skill {
+//   skill_name: string;
+//   level: string;
+//   logo: { url: string };
+// }
 
-export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
+export const getSkillsRes = async (): Promise<Page> => {
   const response = await fetch(
     `https://cdn.contentstack.io/v3/content_types/common_page/entries/bltbd861b1a14f9288e`,
     {
