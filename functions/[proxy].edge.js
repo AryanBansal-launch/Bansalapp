@@ -7,9 +7,6 @@ export default async function handler(request) {
   if (route === '/example') {
     return await example_edge_function(request);
   }
-  else if(route === 'rsc_fix'){
-    return await rsc_edge_function(request);
-  }
   else{
     return await rsc_edge_function(request);
   }
@@ -39,10 +36,11 @@ const rsc_edge_function = async (request) => {
     return fetch(request);
   }
 
+  //2. Edge function to handle the example route
   const example_edge_function = async (request) => {
     const parsedUrl = new URL(request.url);
     const route = parsedUrl.pathname;
-    if (route === '/appliances') {
+    if (route === '/example') {
       const response = {
         time: new Date()
       }
