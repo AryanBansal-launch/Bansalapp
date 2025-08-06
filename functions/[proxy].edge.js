@@ -1,11 +1,29 @@
-const RSC_REDIRECT_PATHS = [
+//edge fucntion to fix the RSC issue
+export default async function handler(request) {
+  const parsedUrl = new URL(request.url);
+  const route = parsedUrl.pathname;
+  
+  // Conditionally call functions based on route or other conditions
+  if (route === '/example') {
+    return await example_edge_function(request);
+  }
+  else if(route === 'rsc_fix'){
+    return await rsc_edge_function(request);
+  }
+  else{
+    return await rsc_edge_function(request);
+  }
+}
+
+
+//1. Edge function to fix the RSC issue
+const rsc_edge_function = async (request) => {
+  const RSC_REDIRECT_PATHS = [
     '/about','/projects','/skills'
   ];
   const RSC_HEADER = 'Rsc';
   const RSC_HEADER_VALUE = '1';
   const RSC_QUERY_PARAM = 'rsc';
-  
-  export default function handler(request) {
     console.log("This is an edge functions test");
     const parsedUrl = new URL(request.url);
     const route = parsedUrl.pathname;
@@ -21,8 +39,15 @@ const RSC_REDIRECT_PATHS = [
     return fetch(request);
   }
 
-// export default function handler(request, response) {
-//     while (true) {
-//       console.log("This is an edge functions test");
-//     }
-//   }
+  const example_edge_function = async (request) => {
+    const parsedUrl = new URL(request.url);
+    const route = parsedUrl.pathname;
+    if (route === '/appliances') {
+      const response = {
+        time: new Date()
+      }
+      return new Response(JSON.stringify(response))
+    }
+    return fetch(request)
+   }
+
