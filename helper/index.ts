@@ -120,7 +120,7 @@ interface Skill {
 
 export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
   const response = await fetch(
-    `https://cdn.contentstack.io/v3/content_types/common_page/entries/bltf0c40becc08e1275`,
+    `https://cdn.contentstack.io/v3/content_types/common_page/entries/bltbd861b1a14f9288e`,
     {
       method: "GET",
       headers: {
