@@ -118,7 +118,7 @@ export const getPageRes = async (entryUrl: string): Promise<Page> => {
 //   logo: { url: string };
 // }
 
-export const getSkillsRes = async (): Promise<Page> => {
+export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
   const response = await fetch(
     `https://cdn.contentstack.io/v3/content_types/common_page/entries/bltbd861b1a14f9288e`,
     {
