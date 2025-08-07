@@ -115,15 +115,18 @@ export default function handler(request) {
   if(pathname.includes('/v3/assets')){
     const myhostname = 'https://images.contentstack.io';
     console.log("This is a Contentstack asset request");
+    
+    // Create headers with custom cache settings
+    const headers = new Headers(request.headers);
+    headers.set('Cache-Control', 'no-store'); // Cache for 1 year
+    
     const newRequest = new Request(myhostname + pathname, {
-      headers: request.headers,
+      headers: headers,
       method: request.method,
       body: request.body,
       redirect: 'follow'
     });
-    return fetch(newRequest, {
-      cache: "no-store"
-    });
+    return fetch(newRequest);
   }
   else{
     return fetch(request);
