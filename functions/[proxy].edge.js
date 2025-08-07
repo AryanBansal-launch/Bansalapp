@@ -105,13 +105,13 @@
 export default function handler(request) {
   console.log("This is an edge functions test for asset proxy");
   const url = new URL(request.url);
-  console.log(url);
+  console.log("URL coming to edge:",url);
   const pathname = url.pathname;
-  console.log(pathname);
+  console.log("Pathname:",pathname);
   // const hostname = url.hostname;
   // console.log(hostname);
-  const filename = pathname.split("/").pop();
-  console.log(filename);
+  // const filename = pathname.split("/").pop();
+  // console.log("Filename:",filename);
   if(pathname.includes('/v3/assets')){
     const myhostname = 'https://images.contentstack.io';
     console.log("This is a Contentstack asset request");

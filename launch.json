@@ -5,10 +5,6 @@
         "destination": "/contact",             
         "statusCode": 308
       },
-      {
-        "source":"/testpage",
-        "destination":"https://openai.com/"
-      },
         {
         "source":"/incorrect1",
         "destination":"/about"

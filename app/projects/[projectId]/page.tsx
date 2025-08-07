@@ -29,7 +29,7 @@ const Page = () => {
     async function fetchProjectData() {
       try {
         const response = await getProjectDetail(`/projects/${projectId}`);
-        // console.log("Specific project data:", response);
+        console.log("Specific project data:", response);
         console.log("Specific image url:", response.thumbnail_image.url);
         const imagePathURL = new URL(response.thumbnail_image.url);
         const imagePath = imagePathURL.pathname;
