@@ -23,12 +23,18 @@ interface ProjectDetail {
 const Page = () => {
   const { projectId } = useParams(); 
   const [projectData, setProjectData] = useState<ProjectDetail | null>(null);
+  const [imagePath, setImagePath] = useState<string>("");//test
 
   useEffect(() => {
     async function fetchProjectData() {
       try {
         const response = await getProjectDetail(`/projects/${projectId}`);
-        console.log("Specific project data:", response);
+        // console.log("Specific project data:", response);
+        console.log("Specific image url:", response.thumbnail_image.url);
+        const imagePathURL = new URL(response.thumbnail_image.url);
+        const imagePath = imagePathURL.pathname;
+        console.log("Image path:", imagePath);
+        setImagePath(imagePath);
         setProjectData(response);
       } catch (error) {
         console.error("Error fetching project data:", error);
@@ -46,9 +52,16 @@ const Page = () => {
     <div className={styles.projectDetailPage} style={{ paddingTop: "150px" }}>
         <div  className={styles.projectCard}>
           <h2 className='h1'>{projectData.project_title}</h2>
-          {projectData.thumbnail_image && (
+          {/* {projectData.thumbnail_image && (
             <img
               src={projectData.thumbnail_image.url}
+              alt={projectData.project_title}
+              className={styles.thumbnail}
+            />
+          )} */}
+          {projectData.thumbnail_image && (
+            <img
+              src={imagePath}
               alt={projectData.project_title}
               className={styles.thumbnail}
             />
