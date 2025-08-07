@@ -121,8 +121,8 @@ export default function handler(request) {
       body: request.body,
       redirect: 'follow'
     });
-    return fetch(newRequest,{
-      cache: "no-store",
+    return fetch(newRequest, {
+      cache: "no-store"
     });
   }
   else{
