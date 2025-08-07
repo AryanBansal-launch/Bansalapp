@@ -5,7 +5,7 @@
         "destination": "/contact",             
         "statusCode": 308
       },
-        {
+      {
         "source":"/incorrect1",
         "destination":"/about"
       }

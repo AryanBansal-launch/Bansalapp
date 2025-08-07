@@ -30,8 +30,8 @@ const Page = () => {
       try {
         const response = await getProjectDetail(`/projects/${projectId}`);
         console.log("Specific project data:", response);
-        console.log("Specific image url:", response.thumbnail_image.url);
-        const imagePathURL = new URL(response.thumbnail_image.url);
+        console.log("Specific image url:", response.thumbnail_image.permanent_url);
+        const imagePathURL = new URL(response.thumbnail_image.permanent_url);
         const imagePath = imagePathURL.pathname;
         console.log("Image path:", imagePath);
         setImagePath(imagePath);
