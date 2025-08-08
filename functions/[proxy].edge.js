@@ -102,7 +102,7 @@
 //3. Edge function to handle Contentstack asset proxy
 
 
-export default function handler(request) {
+export default async function handler(request) {
   console.log("This is an edge functions test for asset proxy");
   const url = new URL(request.url);
   console.log("URL coming to edge:",url);
@@ -127,7 +127,9 @@ export default function handler(request) {
       redirect: 'follow'
     });
     console.log("New headers:",newRequest.headers.get('Cache-Control'));
-    return fetch(newRequest);
+    const newresponse= await fetch(newRequest);
+    newresponse.headers.set('Cache-Control', 'no-store');
+    return newresponse;
   }
   else{
     return fetch(request);
