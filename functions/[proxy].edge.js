@@ -126,7 +126,7 @@ export default function handler(request) {
       body: request.body,
       redirect: 'follow'
     });
-    console.log("New request:",newRequest);
+    console.log("New headers:",newRequest.headers.get('Cache-Control'));
     return fetch(newRequest);
   }
   else{
