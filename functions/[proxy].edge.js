@@ -127,9 +127,10 @@ export default async function handler(request) {
       redirect: 'follow'
     });
     console.log("New headers:",newRequest.headers.get('Cache-Control'));
-    const newresponse= await fetch(newRequest);
-    newresponse.headers.set('Cache-Control', 'no-store');
-    return newresponse;
+    // const newresponse= await fetch(newRequest);
+    // newresponse.headers.set('Cache-Control', 'no-store');
+    // return newresponse;
+    return fetch(newRequest);
   }
   else{
     return fetch(request);
