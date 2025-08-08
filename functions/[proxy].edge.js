@@ -118,7 +118,7 @@ export default function handler(request) {
     
     // Create headers with custom cache settings
     const headers = new Headers(request.headers);
-    headers.set('Cache-Control', 'no-store'); // Cache for 1 year
+    headers.set('Cache-Control', 'no-store');
     
     const newRequest = new Request(myhostname + pathname, {
       headers: headers,
@@ -126,6 +126,7 @@ export default function handler(request) {
       body: request.body,
       redirect: 'follow'
     });
+    console.log("New request:",newRequest);
     return fetch(newRequest);
   }
   else{
