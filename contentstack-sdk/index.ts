@@ -61,7 +61,11 @@ ContentstackLivePreview.init({
     host: process.env.NEXT_APP_CONTENTSTACK_APP_HOST as string,
   },
   ssr:false,
-})?.catch((err) => console.error(err));
+})?.catch((err) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn('Contentstack Live Preview failed to initialize:', err.message);
+  }
+});
 
 export const { onEntryChange } = ContentstackLivePreview;
 
