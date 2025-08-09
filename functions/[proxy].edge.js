@@ -103,16 +103,16 @@
 
 
 export default async function handler(request) {
-  console.log("This is an edge functions test for asset proxy");
-  const url = new URL(request.url);
-  console.log("URL coming to edge:",url);
-  const pathname = url.pathname;
-  console.log("Pathname:",pathname);
   // const hostname = url.hostname;
   // console.log(hostname);
   // const filename = pathname.split("/").pop();
   // console.log("Filename:",filename);
+  const url = new URL(request.url);
+  const pathname = url.pathname;
   if(pathname.includes('/v3/assets')){
+    console.log("This is an edge functions test for asset proxy");
+    console.log("URL coming to edge:",url);
+    console.log("Pathname:",pathname);
     const myhostname = 'https://images.contentstack.io';
     console.log("This is a Contentstack asset request");
     
@@ -126,6 +126,8 @@ export default async function handler(request) {
       body: request.body,
       redirect: 'follow'
     });
+    const newURL = new URL(newRequest.url);
+    console.log("New modifiedURL:",newURL);
     console.log("New headers:",newRequest.headers.get('Cache-Control'));
     // const newresponse= await fetch(newRequest);
     // newresponse.headers.set('Cache-Control', 'no-store');
