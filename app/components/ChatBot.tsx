@@ -23,7 +23,7 @@ export default function ChatBot() {
             <button onClick={toggleChat} className={styles.closeButton}>×</button>
           </div>
           <iframe
-            src="https://www.chatbase.co/chatbot-iframe/gyEv2082AsoBEbIqNnuzn"
+            src="https://www.chatbase.co/chatbot-iframe/0wEE376OKyd5N1CRnVFuT"
             width="100%"
             style={{ height: "100%", border: "none" }}
             title="Chatbot"
