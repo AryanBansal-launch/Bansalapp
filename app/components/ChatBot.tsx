@@ -19,7 +19,7 @@ export default function ChatBot() {
       {isOpen && (
         <div className={styles.chatWindow}>
           <div className={styles.chatHeader}>
-            <span>💬 Launch Assistant</span>
+            <span>💬 Bansal Bot</span>
             <button onClick={toggleChat} className={styles.closeButton}>×</button>
           </div>
           <iframe
