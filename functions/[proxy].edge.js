@@ -102,39 +102,68 @@
 //3. Edge function to handle Contentstack asset proxy
 
 
+// export default async function handler(request) {
+//   // const hostname = url.hostname;
+//   // console.log(hostname);
+//   // const filename = pathname.split("/").pop();
+//   // console.log("Filename:",filename);
+//   const url = new URL(request.url);
+//   const pathname = url.pathname;
+//   if(pathname.includes('/v3/assets')){
+//     console.log("This is an edge functions test for asset proxy");
+//     console.log("URL coming to edge:",url);
+//     console.log("Pathname:",pathname);
+//     const myhostname = 'https://images.contentstack.io';
+//     console.log("This is a Contentstack asset request");
+    
+//     // Create headers with custom cache settings
+//     const headers = new Headers(request.headers);
+//     headers.set('Cache-Control', 'no-store');
+    
+//     const newRequest = new Request(myhostname + pathname, {
+//       headers: headers,
+//       method: request.method,
+//       body: request.body,
+//       redirect: 'follow'
+//     });
+//     const newURL = new URL(newRequest.url);
+//     console.log("New modifiedURL:",newURL);
+//     console.log("New headers:",newRequest.headers.get('Cache-Control'));
+//     // const newresponse= await fetch(newRequest);
+//     // newresponse.headers.set('Cache-Control', 'no-store');
+//     // return newresponse;
+//     return fetch(newRequest);
+//   }
+//   else{
+//     return fetch(request);
+//   }
+// }
+
+//chatgpt suggested way
 export default async function handler(request) {
-  // const hostname = url.hostname;
-  // console.log(hostname);
-  // const filename = pathname.split("/").pop();
-  // console.log("Filename:",filename);
   const url = new URL(request.url);
   const pathname = url.pathname;
-  if(pathname.includes('/v3/assets')){
-    console.log("This is an edge functions test for asset proxy");
-    console.log("URL coming to edge:",url);
-    console.log("Pathname:",pathname);
-    const myhostname = 'https://images.contentstack.io';
-    console.log("This is a Contentstack asset request");
-    
-    // Create headers with custom cache settings
-    const headers = new Headers(request.headers);
-    headers.set('Cache-Control', 'no-store');
-    
-    const newRequest = new Request(myhostname + pathname, {
-      headers: headers,
+
+  if (pathname.includes('/v3/assets')) {
+    console.log("Proxying Contentstack asset:", pathname);
+
+    // Fetch original asset
+    const originResponse = await fetch('https://images.contentstack.io' + pathname, {
       method: request.method,
       body: request.body,
-      redirect: 'follow'
+      headers: request.headers
     });
-    const newURL = new URL(newRequest.url);
-    console.log("New modifiedURL:",newURL);
-    console.log("New headers:",newRequest.headers.get('Cache-Control'));
-    // const newresponse= await fetch(newRequest);
-    // newresponse.headers.set('Cache-Control', 'no-store');
-    // return newresponse;
-    return fetch(newRequest);
+
+    // Clone response & set custom cache header
+    const newHeaders = new Headers(originResponse.headers);
+    newHeaders.set('Cache-Control', 'no-store');
+
+    return new Response(originResponse.body, {
+      status: originResponse.status,
+      statusText: originResponse.statusText,
+      headers: newHeaders
+    });
   }
-  else{
-    return fetch(request);
-  }
+
+  return fetch(request);
 }
