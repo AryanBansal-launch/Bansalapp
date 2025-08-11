@@ -154,8 +154,7 @@ export default async function handler(request) {
       cf: {
         cacheTtl: 0,
         cacheEverything: false
-      },
-      cache: "no-store",
+      }
     });
 
     // Clone response & set custom cache header
