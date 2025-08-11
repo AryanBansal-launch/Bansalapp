@@ -150,7 +150,7 @@ export default async function handler(request) {
     const originResponse = await fetch('https://images.contentstack.io' + pathname, {
       method: request.method,
       body: request.body,
-      headers: request.headers,
+      headers: newreqHeaders,
       cf: {
         cacheTtl: 0,
         cacheEverything: false,
