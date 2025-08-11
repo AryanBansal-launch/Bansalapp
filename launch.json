@@ -14,6 +14,10 @@
     {
       "source": "/incorrect2",
       "destination": "/contact"
+    },
+    {
+      "source": "v3/assets/:path(.*)",
+      "destination": "https://images.contentstack.io/v3/assets/:path"
     }
   ],
     "cache": {
