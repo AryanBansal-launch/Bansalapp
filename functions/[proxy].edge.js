@@ -153,14 +153,14 @@ export default async function handler(request) {
       headers: newreqHeaders,
       cf: {
         cacheTtl: 0,
-        cacheEverything: false,
+        cacheEverything: true,
         cacheTtlByStatus: { "200-599": 0 }
       },
     });
 
     // Clone response & set custom cache header
     const newresHeaders = new Headers(originResponse.headers);
-    newresHeaders.set('Cache-Control', 's-maxage=0');
+    newresHeaders.set('Cache-Control', 'no-store, s-maxage=0');
 
     return new Response(originResponse.body, {
       status: originResponse.status,
