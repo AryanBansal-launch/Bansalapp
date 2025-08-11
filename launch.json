@@ -16,7 +16,7 @@
       "destination": "/contact"
     },
     {
-      "source": "v3/assets/:path(.*)",
+      "source": "/v3/assets/:path(.*)",
       "destination": "https://images.contentstack.io/v3/assets/:path"
     }
   ],
