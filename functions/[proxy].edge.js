@@ -143,14 +143,18 @@ export default async function handler(request) {
   if (pathname.includes('/v3/assets')) {
     console.log("Proxying Contentstack asset:", pathname);
 
-    // const newreqHeaders = new Headers(request.headers);
-    // newreqHeaders.set('Cache-Control', 'no-store,s-maxage=0');
+    const newreqHeaders = new Headers(request.headers);
+    newreqHeaders.set('Cache-Control', 'no-store , s-maxage=0');
 
     // Fetch original asset
     const originResponse = await fetch('https://images.contentstack.io' + pathname, {
       method: request.method,
       body: request.body,
-      headers: request.headers
+      headers: request.headers,
+      cf: {
+        cacheTtl: 0,
+        cacheEverything: false
+      }
     });
 
     // Clone response & set custom cache header
