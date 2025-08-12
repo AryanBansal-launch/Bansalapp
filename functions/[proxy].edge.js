@@ -1,18 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export default function handler(request) {
-  console.log("This is an edge functions test for asset proxy");
+  // console.log("This is an edge functions test for asset proxy");
   const url = new URL(request.url);
-  console.log("URL coming to edge:",url);
+  // console.log("URL coming to edge:",url);
   const pathname = url.pathname;
-  console.log("Pathname:",pathname);
-  // const hostname = url.hostname;
-  // console.log(hostname);
-  // const filename = pathname.split("/").pop();
-  // console.log("Filename:",filename);
+  // console.log("Pathname:",pathname);
   if(pathname.includes('/v3/assets')){
     // const myhostname = 'https://images.contentstack.io';
     console.log("This is a Contentstack asset request");
+    console.log("old request:",request.url);
     
     const newreqHeaders = new Headers(request.headers);
     
@@ -30,6 +27,7 @@ export default function handler(request) {
                   bypassCache: true,
                 },
           });
+          console.log("New request:",newRequest.url);
           return fetch(newRequest);
   
     // const originResponse = await fetch('https://images.contentstack.io' + pathname, {
