@@ -25,6 +25,15 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: '/testpage',  
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store', 
+          },
+        ],
+      },
+      {
         source: '/load',  
         headers: [
           {
