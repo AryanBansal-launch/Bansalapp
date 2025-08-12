@@ -61,5 +61,5 @@
 // }
 
 export default function handler() {
-  return fetch('https://nextjs-cache-test-ecpo9ybdl-aryan-bansals-projects-67cf3cd2.vercel.app/api/test');
+  return fetch('https://nextjs-cache-test-2bvv95tiy-aryan-bansals-projects-67cf3cd2.vercel.app/');
 }
