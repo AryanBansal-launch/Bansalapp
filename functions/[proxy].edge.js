@@ -148,7 +148,7 @@ export default async function handler(request) {
     // newreqHeaders.set('Pragma', 'no-cache');
 
     const newRequest = new Request('https://images.contentstack.io'+ pathname, {
-            headers: headers,
+            headers: request.headers,
             method: request.method,
             body: request.body,
             redirect: 'follow',
