@@ -147,10 +147,8 @@ export default async function handler(request) {
     // newreqHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
     // newreqHeaders.set('Pragma', 'no-cache');
 
+
     const newRequest = new Request('https://images.contentstack.io'+ pathname, {
-            headers: request.headers,
-            method: request.method,
-            body: request.body,
             redirect: 'follow',
             cf: {
                   cacheTtl: 0,
