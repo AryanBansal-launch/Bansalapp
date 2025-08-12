@@ -60,8 +60,25 @@
 //   return fetch('https://randomuser.me/api/');
 // }
 
-export default function handler() {
-  const response = fetch('https://nextjs-cache-test-2bvv95tiy-aryan-bansals-projects-67cf3cd2.vercel.app/');
-  response.headers.set('Cache-Control', 'no-store');
+export default async function handler(request) {
+  // Clone and modify headers
+  const newreqHeaders = new Headers(request.headers);
+  newreqHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+  // newreqHeaders.set('Pragma', 'no-cache');
+
+  // Create a new request with updated headers
+  const newRequest = new Request(
+    'https://nextjs-cache-test-2bvv95tiy-aryan-bansals-projects-67cf3cd2.vercel.app/',
+    {
+      method: request.method,
+      headers: newreqHeaders,
+      body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : undefined,
+    }
+  );
+
+  console.log("New request:", newRequest.url);
+
+  // Forward request and return response
+  const response = await fetch(newRequest);
   return response;
 }
