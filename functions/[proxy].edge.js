@@ -136,52 +136,56 @@
 // }
 
 //chatgpt suggested way
-// export default async function handler(request) {
-//   const url = new URL(request.url);
-//   const pathname = url.pathname;
+export default async function handler(request) {
+  const url = new URL(request.url);
+  const pathname = url.pathname;
 
-//   if (pathname.includes('/v3/assets')) {
-//     console.log("Proxying Contentstack asset:", pathname);
+  if (pathname.includes('/v3/assets')) {
+    console.log("Proxying Contentstack asset:", pathname);
 
-//     // const newreqHeaders = new Headers(request.headers);
-//     // newreqHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
-//     // newreqHeaders.set('Pragma', 'no-cache');
+    // const newreqHeaders = new Headers(request.headers);
+    // newreqHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    // newreqHeaders.set('Pragma', 'no-cache');
 
-//     const newRequest = new Request('https://images.contentstack.io'+ pathname, {
-//             headers: request.headers,
-//             method: request.method,
-//             body: request.body,
-//             redirect: 'follow',
-//           });
-//           return fetch(newRequest, { cache: 'no-store'} );
+    const newRequest = new Request('https://images.contentstack.io'+ pathname, {
+            headers: request.headers,
+            method: request.method,
+            body: request.body,
+            redirect: 'follow',
+            cf: {
+                  cacheTtl: 0,
+                  cacheEverything: true,
+                  cacheTtlByStatus: { "200-599": 0 },
+                  bypassCache: true,
+                },
+          });
+          return fetch(newRequest);
   
-//     // const originResponse = await fetch('https://images.contentstack.io' + pathname, {
-//     //   method: request.method,
-//     //   body: request.body,
-//     //   headers: newreqHeaders,
-//     //   cf: {
-//     //     cacheTtl: 0,
-//     //     cacheEverything: true,
-//     //     cacheTtlByStatus: { "200-599": 0 }
-//     //   },
-//     // });
+    // const originResponse = await fetch('https://images.contentstack.io' + pathname, {
+    //   method: request.method,
+    //   body: request.body,
+    //   headers: newreqHeaders,
+    //   cf: {
+    //     cacheTtl: 0,
+    //     cacheEverything: true,
+    //     cacheTtlByStatus: { "200-599": 0 }
+    //   },
+    // });
 
-//     // // Clone response & set custom cache header
-//     // const newresHeaders = new Headers(originResponse.headers);
-//     // newresHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
-//     // newresHeaders.set('Pragma', 'no-cache');
+    // // Clone response & set custom cache header
+    // const newresHeaders = new Headers(originResponse.headers);
+    // newresHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    // newresHeaders.set('Pragma', 'no-cache');
 
-//     // return new Response(originResponse.body, {
-//     //   status: originResponse.status,
-//     //   statusText: originResponse.statusText,
-//     //   headers: newresHeaders
-//     // });
-//   }
-
-//   return fetch(request);
-// }
-
-
-export default async function handler() {
-  return fetch('https://randomuser.me/api/')
+    // return new Response(originResponse.body, {
+    //   status: originResponse.status,
+    //   statusText: originResponse.statusText,
+    //   headers: newresHeaders
+    // });
   }
+
+  return fetch(request);
+}
+
+
+
