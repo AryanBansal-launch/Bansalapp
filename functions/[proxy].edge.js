@@ -61,5 +61,7 @@
 // }
 
 export default function handler() {
-  return fetch('https://nextjs-cache-test-2bvv95tiy-aryan-bansals-projects-67cf3cd2.vercel.app/');
+  const response = fetch('https://nextjs-cache-test-2bvv95tiy-aryan-bansals-projects-67cf3cd2.vercel.app/');
+  response.headers.set('Cache-Control', 'no-store');
+  return response;
 }
