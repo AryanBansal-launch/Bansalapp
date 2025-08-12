@@ -152,10 +152,9 @@ export default async function handler(request) {
             method: request.method,
             body: request.body,
             redirect: 'follow',
-            cache: 'no-store'
           });
-          return fetch(newRequest);
-    // Fetch original asset 
+          return fetch(newRequest, { cache: 'no-store'} );
+  
     // const originResponse = await fetch('https://images.contentstack.io' + pathname, {
     //   method: request.method,
     //   body: request.body,
