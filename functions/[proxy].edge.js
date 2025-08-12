@@ -143,29 +143,43 @@ export default async function handler(request) {
   if (pathname.includes('/v3/assets')) {
     console.log("Proxying Contentstack asset:", pathname);
 
-    const newreqHeaders = new Headers(request.headers);
-    newreqHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
-    newreqHeaders.set('Pragma', 'no-cache');
+    // const newreqHeaders = new Headers(request.headers);
+    // newreqHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    // newreqHeaders.set('Pragma', 'no-cache');
 
-    // Fetch original asset
-    const originResponse = await fetch('https://images.contentstack.io' + pathname, {
-      method: request.method,
-      body: request.body,
-      headers: newreqHeaders,
-      cache: 'no-store' 
-    });
+    const newRequest = new Request('https://images.contentstack.io'+ pathname, {
+            headers: headers,
+            method: request.method,
+            body: request.body,
+            redirect: 'follow',
+            cache: 'no-store'
+          });
+          return fetch(newRequest);
+    // Fetch original asset 
+    // const originResponse = await fetch('https://images.contentstack.io' + pathname, {
+    //   method: request.method,
+    //   body: request.body,
+    //   headers: newreqHeaders,
+    //   cf: {
+    //     cacheTtl: 0,
+    //     cacheEverything: true,
+    //     cacheTtlByStatus: { "200-599": 0 }
+    //   },
+    // });
 
-    // Clone response & set custom cache header
-    const newresHeaders = new Headers(originResponse.headers);
-    newresHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
-    newresHeaders.set('Pragma', 'no-cache');
+    // // Clone response & set custom cache header
+    // const newresHeaders = new Headers(originResponse.headers);
+    // newresHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    // newresHeaders.set('Pragma', 'no-cache');
 
-    return new Response(originResponse.body, {
-      status: originResponse.status,
-      statusText: originResponse.statusText,
-      headers: newresHeaders
-    });
+    // return new Response(originResponse.body, {
+    //   status: originResponse.status,
+    //   statusText: originResponse.statusText,
+    //   headers: newresHeaders
+    // });
   }
 
   return fetch(request);
 }
+
+
