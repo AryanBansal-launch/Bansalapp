@@ -56,6 +56,10 @@
 //   return fetch(request);
 // }
 
+// export default function handler() {
+//   return fetch('https://randomuser.me/api/');
+// }
+
 export default function handler() {
-  return fetch('https://randomuser.me/api/');
+  return fetch('https://nextjs-cache-test-ecpo9ybdl-aryan-bansals-projects-67cf3cd2.vercel.app/api/test');
 }
