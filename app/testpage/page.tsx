@@ -26,15 +26,6 @@ const page = async () => {
           />
         </div>
         
-        <div style={{ margin: '20px 0' }}>
-          <h3>Image via Direct Contentstack URL:</h3>
-          {/* <img 
-            src="https://images.contentstack.io/v3/assets/blt41b5d34d676c7949/blt12253853eb06f352/project thumbnail.png" 
-            alt="test direct" 
-            style={{ maxWidth: '300px', border: '1px solid #ccc' }}
-          /> */}
-        </div>
-        
         <div style={{ margin: '20px 0', padding: '20px', backgroundColor: '#f5f5f5' }}>
           <h3>Test URLs:</h3>
           <p><strong>Edge Function URL:</strong> <code>/api/v3/assets/blt41b5d34d676c7949/blt12253853eb06f352/project thumbnail.png</code></p>

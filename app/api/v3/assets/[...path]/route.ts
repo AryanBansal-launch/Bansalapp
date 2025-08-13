@@ -4,10 +4,11 @@ export const runtime = 'edge';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
   try {
-    const path = params.path.join('/');
+    const resolvedParams = await params;
+    const path = resolvedParams.path.join('/');
     const assetPath = `/v3/assets/${path}`;
     
     console.log("[Edge] Asset request detected for:", assetPath);
