@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
       status: 200,
       headers: {
         "Content-Type": contentType,
-        "Cache-Control": "private, no-store, no-cache, must-revalidate, max-age=0",
+        "Cache-Control": "max-age=50000",
       },
     });
   } catch (err) {
