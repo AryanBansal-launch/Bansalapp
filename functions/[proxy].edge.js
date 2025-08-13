@@ -60,8 +60,52 @@
 //   return fetch('https://randomuser.me/api/');
 // }
 
+// export const config = {
+//   runtime: "edge", // Important for Next.js
+// };
+
+// export default async function handler(request) {
+//   const url = new URL(request.url);
+//   console.log("[Edge] Incoming request:", url.href);
+
+//   if (url.pathname.startsWith("/v3/assets/")) {
+//     console.log("[Edge] Asset request detected for:", url.pathname);
+
+//     const fastlyUrl = `https://images.contentstack.io${url.pathname}`;
+//     console.log("[Edge] Fetching from Fastly URL:", fastlyUrl);
+
+//     const fastlyResponse = await fetch(fastlyUrl, {
+//       cf: {
+//         cacheTtl: 0,           // No Cloudflare cache for fetch
+//         cacheEverything: false
+//       }
+//     });
+
+//     console.log("[Edge] Fastly response status:", fastlyResponse.status);
+//     console.log("[Edge] Fastly response cache-control:", fastlyResponse.headers.get("cache-control"));
+
+//     const newHeaders = new Headers(fastlyResponse.headers);
+//     newHeaders.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+//     newHeaders.set("Pragma", "no-cache");
+//     newHeaders.set("Expires", "0");
+//     newHeaders.set("CDN-Cache-Control", "no-store"); // For Cloudflare CDN
+//     newHeaders.set("Vary", "Accept-Encoding");
+
+//     console.log("[Edge] Returning response to browser with headers:", Object.fromEntries(newHeaders.entries()));
+
+//     return new Response(fastlyResponse.body, {
+//       status: fastlyResponse.status,
+//       headers: newHeaders
+//     });
+//   }
+
+//   console.log("[Edge] Non-asset request, passing through.");
+//   return fetch(request);
+// }
+
+
 export const config = {
-  runtime: "edge", // Important for Next.js
+  runtime: "edge",
 };
 
 export default async function handler(request) {
@@ -76,8 +120,8 @@ export default async function handler(request) {
 
     const fastlyResponse = await fetch(fastlyUrl, {
       cf: {
-        cacheTtl: 0,           // No Cloudflare cache for fetch
-        cacheEverything: false
+        cacheTtl: 0,            // no storage in edge cache
+        cacheEverything: true,  // needed to respect cacheTtl override
       }
     });
 
@@ -85,13 +129,11 @@ export default async function handler(request) {
     console.log("[Edge] Fastly response cache-control:", fastlyResponse.headers.get("cache-control"));
 
     const newHeaders = new Headers(fastlyResponse.headers);
-    newHeaders.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    newHeaders.set("Cache-Control", "private, no-store, no-cache, must-revalidate, max-age=0");
+    newHeaders.set("CDN-Cache-Control", "no-store"); 
     newHeaders.set("Pragma", "no-cache");
     newHeaders.set("Expires", "0");
-    newHeaders.set("CDN-Cache-Control", "no-store"); // For Cloudflare CDN
     newHeaders.set("Vary", "Accept-Encoding");
-
-    console.log("[Edge] Returning response to browser with headers:", Object.fromEntries(newHeaders.entries()));
 
     return new Response(fastlyResponse.body, {
       status: fastlyResponse.status,
