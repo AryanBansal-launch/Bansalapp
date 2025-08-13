@@ -146,45 +146,40 @@
 // }
 
 
-export const config = {
-  runtime: "edge",
-};
-
 export default async function handler(request) {
-  const url = new URL(request.url);
-  console.log("[Edge] Incoming request:", url.href);
+  const apiUrl = "https://bansalappdnd-test.contentstackapps.com/api/data";
+  console.log("[Edge] Incoming request:", request.url);
+  console.log("[Edge] Fetching from external API:", apiUrl);
 
-  if (url.pathname.startsWith("/v3/assets/")) {
-    console.log("[Edge] Asset request detected for:", url.pathname);
-
-    const fastlyUrl = `https://images.contentstack.io${url.pathname}`;
-    console.log("[Edge] Fetching from Fastly URL:", fastlyUrl);
-
-    // Fetch from Fastly, bypass Cloudflare cache completely
-    const fastlyResponse = await fetch(fastlyUrl, {
+  try {
+    const apiResponse = await fetch(apiUrl, {
       cf: {
-        cacheTtl: 0,           // Do not store in Cloudflare cache
-        cacheEverything: true, // Apply to all responses
-        cacheBypass: true      // Force fetch from Fastly even if edge cache exists
-      }
+        cacheTtl: 0,           // bypass Cloudflare cache
+        cacheEverything: true, // apply cacheTtl override
+        cacheBypass: true,     // always fetch from origin
+      },
     });
 
-    console.log("[Edge] Fastly response status:", fastlyResponse.status);
+    const data = await apiResponse.json();
+    console.log("[Edge] API response status:", apiResponse.status);
 
-    // Clone headers and force no caching
-    const newHeaders = new Headers(fastlyResponse.headers);
-    newHeaders.set("Cache-Control", "private, no-store, no-cache, must-revalidate, max-age=0");
-    newHeaders.set("CDN-Cache-Control", "no-store");
-    newHeaders.set("Pragma", "no-cache");
-    newHeaders.set("Expires", "0");
-    newHeaders.set("Vary", "Accept-Encoding");
+    // Set headers to prevent caching
+    const headers = new Headers(apiResponse.headers);
+    headers.set("Cache-Control", "private, no-store, no-cache, must-revalidate, max-age=0");
+    headers.set("Pragma", "no-cache");
+    headers.set("Expires", "0");
+    headers.set("Vary", "Accept-Encoding");
 
-    return new Response(fastlyResponse.body, {
-      status: fastlyResponse.status,
-      headers: newHeaders,
+    return new Response(JSON.stringify(data), {
+      status: apiResponse.status,
+      headers,
+    });
+  } catch (err) {
+    console.error("[Edge] Error fetching API:", err);
+    return new Response(JSON.stringify({ success: false, error: "Failed to fetch API" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
     });
   }
-
-  console.log("[Edge] Non-asset request, passing through.");
-  return fetch(request);
 }
+
