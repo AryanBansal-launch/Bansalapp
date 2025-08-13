@@ -5,7 +5,15 @@ export async function GET() {
   try {
     // 
     const skills = await getSkillsRes("/skills");
-    return NextResponse.json(skills);
+    const response = NextResponse.json(skills, { status: 200 });
+
+    // Add cache headers (10 minutes)
+    response.headers.set(
+      "Cache-Control",
+      "public, max-age=600, s-maxage=600, stale-while-revalidate=60"
+    );
+
+    return response;
   } catch (error) {
     console.error("Error in GET request:", error);
     return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
