@@ -56,9 +56,9 @@
 //   return fetch(request);
 // }
 
-export default function handler() {
-  return fetch('https://jsonplaceholder.typicode.com/posts');
-}
+// export default function handler() {
+//   return fetch('https://jsonplaceholder.typicode.com/posts');
+// }
 
 // export const config = {
 //   runtime: "edge", // Important for Next.js
@@ -104,3 +104,15 @@ export default function handler() {
 //   console.log("[Edge] Non-asset request, passing through.");
 //   return fetch(request);
 // }
+
+export default function handler(request, context) {
+    const parsedUrl = new URL(request.url);
+    const route = parsedUrl.pathname;
+    if (route === '/appliances') {
+      const response = {
+        time: new Date()
+      }
+      return new Response(JSON.stringify(response))
+    }
+    return fetch(request)
+   }
