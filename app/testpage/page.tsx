@@ -1,7 +1,7 @@
 import React from 'react'
 
 const page = () => {
-  const imagePath = "v3/assets/blt41b5d34d676c7949/blt12253853eb06f352/project thumbnail.png";
+  const imagePath = "v3/assets/blt3ccbce7152f9da44/bltf457c2ff67d03a39/test-img";
   return (
     <div>
       this is test page having image from contentstack assets permanent url
