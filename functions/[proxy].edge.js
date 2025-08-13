@@ -1,3 +1,40 @@
+
+
+export const config = {
+  runtime: "edge", // Important for Next.js
+};
+
+export default async function handler(request) {
+  const url = new URL(request.url);
+
+  if (url.pathname.startsWith("/v3/assets/")) {
+    const fastlyUrl = `https://images.contentstack.io${url.pathname}`;
+
+    const fastlyResponse = await fetch(fastlyUrl, {
+      cf: {
+        cacheTtl: 0,           // No Cloudflare cache for fetch
+        cacheEverything: false
+      }
+    });
+
+    const newHeaders = new Headers(fastlyResponse.headers);
+    newHeaders.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    newHeaders.set("Pragma", "no-cache");
+    newHeaders.set("Expires", "0");
+    newHeaders.set("CDN-Cache-Control", "no-store"); // For Cloudflare CDN
+    newHeaders.set("Vary", "Accept-Encoding");
+
+    return new Response(fastlyResponse.body, {
+      status: fastlyResponse.status,
+      headers: newHeaders
+    });
+  }
+
+  return fetch(request);
+}
+
+
+
 // //edge function to fix the RSC issue
 // export default async function handler(request) {
 //   const parsedUrl = new URL(request.url);
@@ -102,33 +139,33 @@
 //3. Edge function to handle Contentstack asset proxy
 
 
-export default function handler(request) {
-  console.log("This is an edge functions test for asset proxy");
-  const url = new URL(request.url);
-  console.log("URL coming to edge:",url);
-  const pathname = url.pathname;
-  console.log("Pathname:",pathname);
-  // const hostname = url.hostname;
-  // console.log(hostname);
-  // const filename = pathname.split("/").pop();
-  // console.log("Filename:",filename);
-  if(pathname.includes('/v3/assets')){
-    const myhostname = 'https://images.contentstack.io';
-    console.log("This is a Contentstack asset request");
+// export default function handler(request) {
+//   console.log("This is an edge functions test for asset proxy");
+//   const url = new URL(request.url);
+//   console.log("URL coming to edge:",url);
+//   const pathname = url.pathname;
+//   console.log("Pathname:",pathname);
+//   // const hostname = url.hostname;
+//   // console.log(hostname);
+//   // const filename = pathname.split("/").pop();
+//   // console.log("Filename:",filename);
+//   if(pathname.includes('/v3/assets')){
+//     const myhostname = 'https://images.contentstack.io';
+//     console.log("This is a Contentstack asset request");
     
-    // Create headers with custom cache settings
-    const headers = new Headers(request.headers);
-    headers.set('Cache-Control', 'no-store'); // Cache for 1 year
+//     // Create headers with custom cache settings
+//     const headers = new Headers(request.headers);
+//     headers.set('Cache-Control', 'no-store'); // Cache for 1 year
     
-    const newRequest = new Request(myhostname + pathname, {
-      headers: headers,
-      method: request.method,
-      body: request.body,
-      redirect: 'follow'
-    });
-    return fetch(newRequest);
-  }
-  else{
-    return fetch(request);
-  }
-}
+//     const newRequest = new Request(myhostname + pathname, {
+//       headers: headers,
+//       method: request.method,
+//       body: request.body,
+//       redirect: 'follow'
+//     });
+//     return fetch(newRequest);
+//   }
+//   else{
+//     return fetch(request);
+//   }
+// }
