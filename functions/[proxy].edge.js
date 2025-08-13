@@ -60,25 +60,45 @@
 //   return fetch('https://randomuser.me/api/');
 // }
 
+export const config = {
+  runtime: "edge", // Important for Next.js
+};
+
 export default async function handler(request) {
-  // Clone and modify headers
-  const newreqHeaders = new Headers(request.headers);
-  newreqHeaders.set('Cache-Control', 'no-store, no-cache, must-revalidate');
-  // newreqHeaders.set('Pragma', 'no-cache');
+  const url = new URL(request.url);
+  console.log("[Edge] Incoming request:", url.href);
 
-  // Create a new request with updated headers
-  const newRequest = new Request(
-    'https://nextjs-cache-test-2bvv95tiy-aryan-bansals-projects-67cf3cd2.vercel.app/',
-    {
-      method: request.method,
-      headers: newreqHeaders,
-      body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : undefined,
-    }
-  );
+  if (url.pathname.startsWith("/v3/assets/")) {
+    console.log("[Edge] Asset request detected for:", url.pathname);
 
-  console.log("New request:", newRequest.url);
+    const fastlyUrl = `https://images.contentstack.io${url.pathname}`;
+    console.log("[Edge] Fetching from Fastly URL:", fastlyUrl);
 
-  // Forward request and return response
-  const response = await fetch(newRequest);
-  return response;
+    const fastlyResponse = await fetch(fastlyUrl, {
+      cf: {
+        cacheTtl: 0,           // No Cloudflare cache for fetch
+        cacheEverything: false
+      }
+    });
+
+    console.log("[Edge] Fastly response status:", fastlyResponse.status);
+    console.log("[Edge] Fastly response cache-control:", fastlyResponse.headers.get("cache-control"));
+
+    const newHeaders = new Headers(fastlyResponse.headers);
+    newHeaders.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    newHeaders.set("Pragma", "no-cache");
+    newHeaders.set("Expires", "0");
+    newHeaders.set("CDN-Cache-Control", "no-store"); // For Cloudflare CDN
+    newHeaders.set("Vary", "Accept-Encoding");
+
+    console.log("[Edge] Returning response to browser with headers:", Object.fromEntries(newHeaders.entries()));
+
+    return new Response(fastlyResponse.body, {
+      status: fastlyResponse.status,
+      headers: newHeaders
+    });
+  }
+
+  console.log("[Edge] Non-asset request, passing through.");
+  return fetch(request);
 }
