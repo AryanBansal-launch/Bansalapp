@@ -1,24 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getSkillsRes } from "@/helper";
 
 export async function GET() {
   try {
-    const response = await fetch(`https://cdn.contentstack.io/v3/content_types/common_page/entries/bltbd861b1a14f9288e`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "api_key": process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY as string,
-        "access_token": process.env.NEXT_PUBLIC_CONTENTSTACK_DELIVERY_TOKEN as string,
-      }, 
-    })
-    // Handle GET request - return some data or status
-    // return NextResponse.json({ 
-    //   success: true, 
-    //   message: "Data API endpoint is working", 
-    //   method: "GET",
-    //   timestamp: new Date().toISOString()
-    // });
-    return response;
+    // 
+    const skills = await getSkillsRes("/skills");
+    return NextResponse.json(skills);
   } catch (error) {
     console.error("Error in GET request:", error);
     return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
