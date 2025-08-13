@@ -67,6 +67,8 @@ export const config = {
 export default async function handler(request) {
   const url = new URL(request.url);
   console.log("[Edge] Incoming request:", url.href);
+  const filename = url.pathname.split("/").pop();
+  console.log("[Edge] Filename:", filename);
 
   if (url.pathname.startsWith("/v3/assets/")) {
     console.log("[Edge] Asset request detected for:", url.pathname);
@@ -90,6 +92,7 @@ export default async function handler(request) {
     newHeaders.set("Expires", "0");
     newHeaders.set("CDN-Cache-Control", "no-store"); // For Cloudflare CDN
     newHeaders.set("Vary", "Accept-Encoding");
+    newHeaders.set("filename",filename);
 
     console.log("[Edge] Returning response to browser with headers:", Object.fromEntries(newHeaders.entries()));
 
