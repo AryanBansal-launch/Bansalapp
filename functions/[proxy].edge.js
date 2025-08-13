@@ -152,6 +152,7 @@ export default async function handler(request) {
   console.log("[Edge] Fetching from external API:", apiUrl);
 
   try {
+    // Fetch from external API
     const apiResponse = await fetch(apiUrl, {
       cf: {
         cacheTtl: 0,           // bypass Cloudflare cache
@@ -160,17 +161,15 @@ export default async function handler(request) {
       },
     });
 
-    const data = await apiResponse.json();
-    console.log("[Edge] API response status:", apiResponse.status);
-
-    // Set headers to prevent caching
+    // Clone headers and set no-cache
     const headers = new Headers(apiResponse.headers);
     headers.set("Cache-Control", "private, no-store, no-cache, must-revalidate, max-age=0");
     headers.set("Pragma", "no-cache");
     headers.set("Expires", "0");
     headers.set("Vary", "Accept-Encoding");
 
-    return new Response(JSON.stringify(data), {
+    // Return the response as-is (without parsing)
+    return new Response(apiResponse.body, {
       status: apiResponse.status,
       headers,
     });
@@ -182,4 +181,3 @@ export default async function handler(request) {
     });
   }
 }
-
