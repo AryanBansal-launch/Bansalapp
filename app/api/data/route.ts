@@ -4,7 +4,10 @@ import { getSkillsRes } from "@/helper";
 export async function GET() {
   try {
     // 
+    const t1= Date.now();
     const skills = await getSkillsRes("/skills");
+    const t2= Date.now();
+    console.log(`Time taken for CMS call: ${t2 - t1}ms`);
     const response = NextResponse.json(skills, { status: 200 });
 
     // Add cache headers (10 minutes)
