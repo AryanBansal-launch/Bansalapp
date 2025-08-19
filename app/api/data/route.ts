@@ -10,7 +10,7 @@ export async function GET() {
     // Add cache headers (10 minutes)
     response.headers.set(
       "Cache-Control",
-      "public, max-age=600, s-maxage=600, stale-while-revalidate=60"
+      "no-store"
     );
 
     return response;

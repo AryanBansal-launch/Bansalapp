@@ -105,7 +105,7 @@
 //   return fetch(request);
 // }
 
-export default function handler(request, context) {
+export default function handler(request) {
     const parsedUrl = new URL(request.url);
     const route = parsedUrl.pathname;
     if (route === '/appliances') {
