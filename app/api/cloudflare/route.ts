@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSkillsRes } from "@/helper";
+import { getSkillsResCloudflare } from "@/helper";
 
 export async function GET(req: NextRequest) {
   try {
     const q=req.nextUrl.searchParams.get("query") || "";
-    const skills = await getSkillsRes(q,"/skills");
+    const skills = await getSkillsResCloudflare(q,"/skills");
     const response = NextResponse.json(skills, { status: 200 });
 
     // Add cache headers (10 minutes)

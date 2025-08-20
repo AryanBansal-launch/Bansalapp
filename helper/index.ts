@@ -177,7 +177,7 @@ export const getSkillsResCached = async (q: string,entryUrl: string): Promise<Pa
 export const getSkillsResCloudflare = async (q: string,entryUrl: string): Promise<Page> => {
   const t1 = new Date();
   const response = await fetch(
-    `https://bansalappdnd-test.contentstackapps.com/api/cached`,
+    `https://bansalapp.eu-gcpcontentstackapps.com/api/cached`,
   );
 
   if (!response.ok) {
