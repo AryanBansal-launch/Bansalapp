@@ -18,7 +18,7 @@ export default async function SkillsPage() {
   let skills: Skill[] = [];
 
   try {
-    const res = await getSkillsRes("/skills");
+    const res = await getSkillsRes("", "/skills");
     skills = res.page_components[0].skills.skill_set as Skill[];
     console.log("Skills are being rendered!");
   } catch (err) {
