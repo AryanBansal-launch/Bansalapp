@@ -5,6 +5,7 @@ import { FooterProps,HeaderProps} from "../typescript/layout";
 import { getEntry, getEntryById, getEntryByUrl } from "../contentstack-sdk";
 import { Header } from "next/dist/lib/load-custom-routes";
 import { unstable_cache as cache } from "next/cache";
+import { NextResponse } from "next/server";
 
 // const { publicRuntimeConfig } = getConfig();
 // const envConfig = process.env.CONTENTSTACK_API_KEY
@@ -174,7 +175,8 @@ export const getSkillsResCached = async (q: string,entryUrl: string): Promise<Pa
   return data.entry;
 };
 
-export const getSkillsResCloudflare = async (q: string,entryUrl: string) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getSkillsResCloudflare = async (q: string,entryUrl: string):Promise<any> => {
   const t1 = new Date();
   const response = await fetch(
     `https://bansalapp.eu-gcpcontentstackapps.com/api/cached`,
