@@ -118,7 +118,8 @@ export const getPageRes = async (entryUrl: string): Promise<Page> => {
 //   logo: { url: string };
 // }
 
-export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
+export const getSkillsRes = async (q: string,entryUrl: string): Promise<Page> => {
+  const t1 = new Date();
   const response = await fetch(
     `https://cdn.contentstack.io/v3/content_types/common_page/entries/bltbd861b1a14f9288e`,
     {
@@ -134,9 +135,11 @@ export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
   if (!response.ok) {
     throw new Error(`Failed to fetch skills data: ${response.statusText}`);
   }
+  const t2= new Date();
+  console.log("Time:", t2.getTime() - t1.getTime(),"x-request-id:", response.headers.get("x-request-id"),"x-cache:", response.headers.get("x-cache"),"query:",q);
   
-  // Log only x-request-id header
-  console.log("x-request-id:", response.headers.get("x-request-id"));
+  
+
   
   const data = await response.json();
   // console.log("Skills Data from backend:", data);
