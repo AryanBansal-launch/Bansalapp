@@ -174,7 +174,7 @@ export const getSkillsResCached = async (q: string,entryUrl: string): Promise<Pa
   return data.entry;
 };
 
-export const getSkillsResCloudflare = async (q: string,entryUrl: string): Promise<Page> => {
+export const getSkillsResCloudflare = async (q: string,entryUrl: string) => {
   const t1 = new Date();
   const response = await fetch(
     `https://bansalapp.eu-gcpcontentstackapps.com/api/cached`,
@@ -189,9 +189,10 @@ export const getSkillsResCloudflare = async (q: string,entryUrl: string): Promis
   
 
   
-  const data = await response.json();
+  // const data = await response.json();
   // console.log("Skills Data from backend:", data);
-  return data.entry;
+  // return data.entry;
+  return {};
 };
 
 //for getting About page

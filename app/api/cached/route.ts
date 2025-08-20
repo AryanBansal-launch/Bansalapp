@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
       "s-maxage=600"
     );
 
-    return response;
+    return "hello world";
   } catch (error) {
     console.error("Error in GET request:", error);
     return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
