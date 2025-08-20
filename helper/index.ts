@@ -134,7 +134,37 @@ export const getSkillsRes = async (entryUrl: string): Promise<Page> => {
   if (!response.ok) {
     throw new Error(`Failed to fetch skills data: ${response.statusText}`);
   }
-
+  
+  // CDN Detection Logic
+  const cdnHeaders = response.headers;
+  let cdnType = "Unknown";
+  
+  // Check for Fastly headers
+  if (cdnHeaders.get("x-fastly-request-id") || cdnHeaders.get("x-fastly-ssl") || cdnHeaders.get("fastly-ssl")) {
+    cdnType = "Fastly";
+  }
+  // Check for Cloudflare headers
+  else if (cdnHeaders.get("cf-ray") || cdnHeaders.get("cf-cache-status") || cdnHeaders.get("cf-request-id")) {
+    cdnType = "Cloudflare";
+  }
+  // Check for other common CDN indicators
+  else if (cdnHeaders.get("x-cache") || cdnHeaders.get("x-cache-hits")) {
+    cdnType = "Generic CDN";
+  }
+  
+  console.log("CDN Detection:", {
+    cdnType,
+    headers: {
+      fastly: cdnHeaders.get("x-fastly-request-id"),
+      cloudflare: cdnHeaders.get("cf-ray"),
+      cacheStatus: cdnHeaders.get("cf-cache-status"),
+      xCache: cdnHeaders.get("x-cache"),
+      xCacheHits: cdnHeaders.get("x-cache-hits"),
+      server: cdnHeaders.get("server"),
+      via: cdnHeaders.get("via")
+    }
+  });
+  
   const data = await response.json();
   // console.log("Skills Data from backend:", data);
   return data.entry;

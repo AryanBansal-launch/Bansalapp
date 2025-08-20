@@ -7,7 +7,8 @@ export async function GET(req: NextRequest) {
     const t1= Date.now();
     const skills = await getSkillsRes("/skills");
     const t2= Date.now();
-    console.log(`Time taken for CMS call: ${t2 - t1}ms`, "Query param:",req.nextUrl.searchParams.get("query"));
+    console.log(`Time taken for CMS call: ${t2 - t1}ms`)
+    console.log("Query param:",req.nextUrl.searchParams.get("query"));
     const response = NextResponse.json(skills, { status: 200 });
 
     // Add cache headers (10 minutes)
