@@ -106,6 +106,7 @@
 // }
 
 export default function handler(request) {
+    console.log("Edge log");
     const parsedUrl = new URL(request.url);
     const route = parsedUrl.pathname;
     if (route === '/appliances') {
