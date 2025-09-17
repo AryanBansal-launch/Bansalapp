@@ -282,9 +282,9 @@ async function exchangeAuthCodeForTokens(authCode, oauthCredentials) {
       grant_type: 'authorization_code'
     })
   });
-  const tokens = response.json();
+  const tokens = await response.json();
   if (!response.ok) {
-    throw new Error(tokens);
+    throw new Error(`Token exchange failed: ${JSON.stringify(tokens)}`);
   }
 
   return tokens;
@@ -308,7 +308,7 @@ async function refreshJwtToken(refreshToken, oauthCredentials) {
   });
   const tokens = await response.json();
   if (!response.ok) {
-    throw new Error(tokens);
+    throw new Error(`Token refresh failed: ${JSON.stringify(tokens)}`);
   }
   return createJwtToken(tokens, oauthCredentials);
 }
