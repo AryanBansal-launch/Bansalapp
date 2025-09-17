@@ -14,10 +14,6 @@
     {
       "source": "/incorrect2",
       "destination": "/contact"
-    },
-    {
-      "source": "/latest",
-      "destination":"/blog?page=1"
     }
   ],
     "cache": {
