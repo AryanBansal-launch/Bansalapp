@@ -1,8 +1,9 @@
 export default async function handler(request) {
     const url = new URL(request.url);
-  
+    console.log("URL:", url);
     // Get everything after `/cdn-assets/`
-    const path = url.pathname.replace("/cdn-assets/", "");
+    const path = url.pathname.split("/").pop();
+    console.log("Path:", path);
   
     // Build the original Contentstack asset URL
     const originUrl = `https://images.contentstack.io/v3/assets/blt41b5d34d676c7949/bltfb5d4aaa3e3acde1/67c16b49730ebc6334030e5f/${path}`;
