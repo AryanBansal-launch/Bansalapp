@@ -3,10 +3,10 @@ import jwt from '@tsndr/cloudflare-worker-jwt';
 
 export default async function handler(request, context) {
   const oauthCredentials = {
-    OAUTH_CLIENT_ID: context.env.OAUTH_CLIENT_ID,
-    OAUTH_CLIENT_SECRET: context.env.OAUTH_CLIENT_SECRET,
-    OAUTH_REDIRECT_URI: context.env.OAUTH_REDIRECT_URI,
-    OAUTH_TOKEN_URL: context.env.OAUTH_TOKEN_URL
+    OAUTH_CLIENT_ID: context.env.NEXT_PUBLIC_OAUTH_CLIENT_ID,
+    OAUTH_CLIENT_SECRET: context.env.NEXT_PUBLIC_OAUTH_CLIENT_SECRET,
+    OAUTH_REDIRECT_URI: context.env.NEXT_PUBLIC_OAUTH_REDIRECT_URI,
+    OAUTH_TOKEN_URL: context.env.NEXT_PUBLIC_OAUTH_TOKEN_URL
   };
 
   if (request.url.includes('_next') || request.url.includes('favicon.ico')) {
