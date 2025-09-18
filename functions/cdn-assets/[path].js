@@ -61,8 +61,10 @@ export default async function handler(request, response) {
     
     // newHeaders.set('Content-Type', contentType);
     // console.log("Final Content-Type:", contentType);
+    const newHeaders = new Headers(myresponse.headers);
+    newHeaders.set('Content-Type', 'image/png');
     
-    response.status(myresponse.status).send(myresponse.body);
+    response.status(myresponse.status).send(myresponse.body, { headers: newHeaders });
 
   }
 
