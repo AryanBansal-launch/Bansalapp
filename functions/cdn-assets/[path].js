@@ -1,6 +1,6 @@
 export default async function handler(request) {
-    const url = new URL(request.url);
-    console.log("URL:", url);
+    // const url = new URL(request.url);
+    // console.log("URL:", url);
     // Get everything after `/cdn-assets/`
     const path = request.params.path;
     console.log("Path:", path);
