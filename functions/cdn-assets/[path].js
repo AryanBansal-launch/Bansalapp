@@ -1,4 +1,4 @@
-export default async function handler(request) {
+export default function handler(request) {
     // const url = new URL(request.url);
     // console.log("URL:", url);
     // Get everything after `/cdn-assets/`
@@ -12,7 +12,7 @@ export default async function handler(request) {
     const optimizedUrl = `${originUrl}?quality=80&auto=webp`; 
   
     // Fetch the optimized asset
-    const response = await fetch(optimizedUrl);
+    const response = fetch(optimizedUrl);
     
     console.log("Response status:", response.status);
     console.log("Content-Type:", response.headers.get('Content-Type'));
@@ -36,7 +36,6 @@ export default async function handler(request) {
     const newHeaders = new Headers(response.headers);
     
     // Ensure proper content type for images
-    let contentType = response.headers.get('Content-Type');
     
     // If no content type or it's wrong, determine from file extension
     if (!contentType || contentType.includes('text/html') || contentType.includes('document')) {
