@@ -11,56 +11,12 @@ export default async function handler(request, response) {
     // Fetch the optimized asset
     const myresponse = await fetch(optimizedUrl);
     
-    // console.log("Response status:", response.status);
-    // console.log("Content-Type:", response.headers.get('Content-Type'));
-    // console.log("Request URL:", optimizedUrl);
   
     if (!myresponse.ok) {
       console.log("Response not OK, status:", response.status);
       response.status(404).json({ error: "Asset not found" });
     }
     
-    // Check if we got JSON instead of an image (error response)
-    // const contentType = response.headers.get('Content-Type');
-    // if (contentType && contentType.includes('application/json')) {
-    //   console.log("Got JSON response instead of image, likely an error");
-    //   const errorData = response.json();
-    //   console.log("Error data:", errorData);
-    //   return new Response("Asset not found or error from Contentstack", { status: 404 });
-    // }
-  
-    // Create new response with correct content type for images
-    // const newHeaders = new Headers(response.headers);
-    
-    // Ensure proper content type for images
-    
-    // If no content type or it's wrong, determine from file extension
-    // if (!contentType || contentType.includes('text/html') || contentType.includes('document')) {
-    //   const extension = path.split('.').pop()?.toLowerCase();
-    //   switch (extension) {
-    //     case 'jpg':
-    //     case 'jpeg':
-    //       contentType = 'image/jpeg';
-    //       break;
-    //     case 'png':
-    //       contentType = 'image/png';
-    //       break;
-    //     case 'gif':
-    //       contentType = 'image/gif';
-    //       break;
-    //     case 'webp':
-    //       contentType = 'image/webp';
-    //       break;
-    //     case 'svg':
-    //       contentType = 'image/svg+xml';
-    //       break;
-    //     default:
-    //       contentType = 'image/jpeg';
-    //   }
-    // }
-    
-    // newHeaders.set('Content-Type', contentType);
-    // console.log("Final Content-Type:", contentType);
     const newHeaders = new Headers(myresponse.headers);
     newHeaders.set('Content-Type', 'image/png');
     

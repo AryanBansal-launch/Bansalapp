@@ -2,7 +2,7 @@
 
 
 export default function handler(request, response) {
-
+    console.log("User request:", request);
     response.status(200).json({
   
       body: request.body,
