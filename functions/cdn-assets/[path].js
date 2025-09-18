@@ -2,7 +2,7 @@ export default async function handler(request) {
     const url = new URL(request.url);
     console.log("URL:", url);
     // Get everything after `/cdn-assets/`
-    const path = url.pathname.split("/").pop();
+    const path = request.params.name;
     console.log("Path:", path);
   
     // Build the original Contentstack asset URL
