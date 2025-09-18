@@ -1,4 +1,4 @@
-export default async function handler(request) {
+export default async function handler(request, response) {
     const path = request.params.path;
     console.log("Path:", path);
   
@@ -9,15 +9,15 @@ export default async function handler(request) {
     const optimizedUrl = `${originUrl}?quality=80&auto=webp`; 
   
     // Fetch the optimized asset
-    const response = await fetch(optimizedUrl);
+    const myresponse = await fetch(optimizedUrl);
     
     // console.log("Response status:", response.status);
     // console.log("Content-Type:", response.headers.get('Content-Type'));
     // console.log("Request URL:", optimizedUrl);
   
-    if (!response.ok) {
+    if (!myresponse.ok) {
       console.log("Response not OK, status:", response.status);
-      return new Response("Asset not found", { status: 404 });
+      response.status(404).json({ error: "Asset not found" });
     }
     
     // Check if we got JSON instead of an image (error response)
@@ -62,12 +62,8 @@ export default async function handler(request) {
     // newHeaders.set('Content-Type', contentType);
     // console.log("Final Content-Type:", contentType);
     
-    // return new Response(response.body, {
-    //   status: response.status,
-    //   statusText: response.statusText,
-    //   headers: newHeaders
-    // });
-    return response;
+    response.status(myresponse.status).send(myresponse.body);
+
   }
 
 
