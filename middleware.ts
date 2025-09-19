@@ -10,38 +10,38 @@
 // }
 
 // middleware.ts
-// import { NextResponse } from 'next/server';
-// import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-// export function middleware(request: NextRequest) {
-//   const response = NextResponse.next();
-//   if (request.nextUrl.pathname === '/testpage') {
-//     response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=60');
-//   }
-//   return response;
-// }
-
-// export const config = {
-//   matcher: ['/testpage'], // Add more paths as needed
-// };
-
-import { NextResponse } from "next/server";
-import http from "http";
-
-let started = false;
-
-export function middleware() {
-  // ❌ BAD PRACTICE: starting a server inside middleware
-  if (!started) {
-    http
-      .createServer((req, res) => {
-        res.end("Hello from rogue server!");
-      })
-      .listen(4000); // 🚨 will throw EADDRINUSE in Launch
-    started = true;
-    console.log("🚨 Started rogue server on port 4000");
+export function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+  if (request.nextUrl.pathname === '/testpage') {
+    response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=60');
   }
-
-  return NextResponse.next();
+  return response;
 }
+
+export const config = {
+  matcher: ['/testpage'], // Add more paths as needed
+};
+
+// import { NextResponse } from "next/server";
+// import http from "http";
+
+// let started = false;
+
+// export function middleware() {
+//   // ❌ BAD PRACTICE: starting a server inside middleware
+//   if (!started) {
+//     http
+//       .createServer((req, res) => {
+//         res.end("Hello from rogue server!");
+//       })
+//       .listen(4000); // 🚨 will throw EADDRINUSE in Launch
+//     started = true;
+//     console.log("🚨 Started rogue server on port 4000");
+//   }
+
+//   return NextResponse.next();
+// }
 
