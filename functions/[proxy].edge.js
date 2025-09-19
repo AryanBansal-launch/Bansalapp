@@ -1,25 +1,19 @@
 
-export default function handler(request) {
+export default async function handler(request) {
+  // Define your blacklisted I
 
-  const parsedUrl = new URL(request.url);
- 
-  const route = parsedUrl.pathname;
- 
-  if (route === '/appliances') {
- 
-    const response = {
- 
-      time: new Date()
- 
-    }
- 
-    return new Response(JSON.stringify(response))
- 
+  // Get the client's IP address (as sent by the platform)
+  console.log("Headers as array:", Array.from(request.headers.entries()));
+  const locale = request.headers.get("x-locale") || "";
+  console.log("Locale:", locale);
+  if(!locale) {
+    console.log("Access denied - Locale is not set");
+    return new Response("Forbidden. Your locale is not set.", { status: 403 });
   }
- 
-  return fetch(request)
- 
- }
+  // Continue with normal logic if locale is not French
+  // ... your normal edge function logic here ...
+  return fetch(request);
+}
 // import jwt from '@tsndr/cloudflare-worker-jwt';
 
 // export default async function handler(request, context) {
