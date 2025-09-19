@@ -8,7 +8,8 @@ export default async function handler(request, context) {
     OAUTH_REDIRECT_URI: context.env.NEXT_PUBLIC_OAUTH_REDIRECT_URI,
     OAUTH_TOKEN_URL: context.env.NEXT_PUBLIC_OAUTH_TOKEN_URL
   };
-
+  console.log("oauthCredentials: in proxy edge function");
+  console.log(oauthCredentials);
   if (request.url.includes('_next') || request.url.includes('favicon.ico')) {
     return fetch(request);
   }
