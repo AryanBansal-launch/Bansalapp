@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    domains: ["images.contentstack.io"], 
-  },
+  // images: {
+  //   domains: ["images.contentstack.io"], 
+  // },
   async headers() {
     return [
       {
