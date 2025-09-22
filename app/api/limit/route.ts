@@ -13,7 +13,6 @@ export async function POST() {
   
   // Define all your API endpoints
   const apiEndpoints = [
-    // Your existing Contentstack deployment URLs
     "https://au-launch-api.contentstack.com/manage/deploy/68cd39ccc5c07cde10214bb0",
     "https://au-launch-api.contentstack.com/manage/deploy/68cd39da791e8b259ff3c9bc",
     "https://au-launch-api.contentstack.com/manage/deploy/68cd39e519579a4282152f10",
@@ -22,6 +21,29 @@ export async function POST() {
     "https://au-launch-api.contentstack.com/manage/deploy/68cd3a1019579a4282152f3c",
     "https://au-launch-api.contentstack.com/manage/deploy/68cd3b18b14703834eca1dea",
     "https://au-launch-api.contentstack.com/manage/deploy/68cd3b30b14703834eca1dfe",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d122d9d2a0f9f6f87e9b8d",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d1234e568cab788e537da8",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12398568cab788e537dc1",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d123c4568cab788e537deb",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12414d2a0f9f6f87e9bfe",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12434603a6be4ca2c6aa6",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d1270b603a6be4ca2c6ab5",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12727d2a0f9f6f87e9c5e",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d1278a603a6be4ca2c6afa",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d127a8d2a0f9f6f87e9c91",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d127ec568cab788e537ecd",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12816d2a0f9f6f87e9cd1",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12847d2a0f9f6f87e9d1f",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d128c1568cab788e537f4f",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d1295f568cab788e537f8f",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12981568cab788e537fad",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d1299ed2a0f9f6f87e9e7d",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d129bb84ed2420ef849378",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12a0f603a6be4ca2c6c98",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12a43568cab788e538032",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12a6684ed2420ef8493e8",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12ac9603a6be4ca2c6cf2",
+    "https://au-launch-api.contentstack.com/manage/deploy/68d12b17603a6be4ca2c6d22"
   ];
 
   const results: ApiResult[] = [];
