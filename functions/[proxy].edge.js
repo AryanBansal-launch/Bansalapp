@@ -1,12 +1,33 @@
 
-export default async function handler(request) {
-  const locale = request.headers.get("x-locale") || "";
-  if(!locale) {
-    console.log("Access denied - Locale is not set");
-    return new Response("Forbidden. Your locale is not set.", { status: 403 });
+export default function handler(request) {
+
+  const parsedUrl = new URL(request.url);
+ 
+  const route = parsedUrl.pathname;
+ 
+  if (route === '/appliances') {
+ 
+    const response = {
+ 
+      time: new Date()
+ 
+    }
+ 
+    return new Response(JSON.stringify(response))
+ 
   }
-  return fetch(request);
-}
+ 
+  return fetch(request)
+ 
+ }
+// export default async function handler(request) {
+//   const locale = request.headers.get("x-locale") || "";
+//   if(!locale) {
+//     console.log("Access denied - Locale is not set");
+//     return new Response("Forbidden. Your locale is not set.", { status: 403 });
+//   }
+//   return fetch(request);
+// }
 // import jwt from '@tsndr/cloudflare-worker-jwt';
 
 // export default async function handler(request, context) {
