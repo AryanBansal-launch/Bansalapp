@@ -51,68 +51,99 @@ export async function POST() {
   const errors: ApiResult[] = [];
 
   try {
-    // Process all URLs in parallel for better performance
-    const promises: Promise<ApiResult>[] = apiEndpoints.map(async (url, index): Promise<ApiResult> => {
-      try {
-        console.log(`Making POST call ${index + 1}/${apiEndpoints.length}: ${url}`);
-        
-        // Determine if it's an internal or external URL
-        const isInternal = url.startsWith('/api/');
-        const fullUrl = isInternal ? `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}${url}` : url;
-        
-        const response = await fetch(fullUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            // Add any required headers for authentication
-            // 'Authorization': `Bearer ${process.env.API_TOKEN}`,
-          },
-          // Add any required body data
-          body: JSON.stringify({ 
-            timestamp: new Date().toISOString(),
-            source: 'post-all-endpoint'
-          })
-        });
+    const batchSize = 16;
+    const totalBatches = Math.ceil(apiEndpoints.length / batchSize);
+    
+    console.log(`Processing ${apiEndpoints.length} endpoints in ${totalBatches} batches of ${batchSize} (all batches in parallel)`);
 
-        let responseData;
+    // Create all batches
+    const batches: string[][] = [];
+    for (let batchIndex = 0; batchIndex < totalBatches; batchIndex++) {
+      const startIndex = batchIndex * batchSize;
+      const endIndex = Math.min(startIndex + batchSize, apiEndpoints.length);
+      const batch = apiEndpoints.slice(startIndex, endIndex);
+      batches.push(batch);
+    }
+
+    // Process all batches in parallel
+    const allBatchPromises: Promise<ApiResult[]>[] = batches.map(async (batch, batchIndex): Promise<ApiResult[]> => {
+      console.log(`Starting batch ${batchIndex + 1}/${totalBatches} (${batch.length} URLs)`);
+      
+      // Process URLs within this batch in parallel
+      const batchPromises: Promise<ApiResult>[] = batch.map(async (url, index): Promise<ApiResult> => {
+        const globalIndex = (batchIndex * batchSize) + index;
         try {
-          responseData = await response.json();
-        } catch {
-          responseData = await response.text();
+          console.log(`Making POST call ${globalIndex + 1}/${apiEndpoints.length}: ${url}`);
+          
+          // Determine if it's an internal or external URL
+          const isInternal = url.startsWith('/api/');
+          const fullUrl = isInternal ? `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}${url}` : url;
+          
+          const response = await fetch(fullUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              // Add any required headers for authentication
+              // 'Authorization': `Bearer ${process.env.API_TOKEN}`,
+            },
+            // Add any required body data
+            body: JSON.stringify({ 
+              timestamp: new Date().toISOString(),
+              source: 'post-all-endpoint'
+            })
+          });
+
+          let responseData;
+          try {
+            responseData = await response.json();
+          } catch {
+            responseData = await response.text();
+          }
+
+          const result: ApiResult = {
+            url: url,
+            status: response.status,
+            success: response.ok,
+            message: response.ok ? 'Success' : `Failed with status ${response.status}`,
+            response: responseData
+          };
+
+          if (response.ok) {
+            console.log(`✅ Success for ${url}: ${response.status}`);
+          } else {
+            console.log(`❌ Error for ${url}: ${response.status}`);
+          }
+
+          return result;
+        } catch (error) {
+          const errorResult: ApiResult = {
+            url: url,
+            status: 0,
+            success: false,
+            message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+          };
+          console.log(`❌ Network error for ${url}:`, error);
+          return errorResult;
         }
+      });
 
-        const result: ApiResult = {
-          url: url,
-          status: response.status,
-          success: response.ok,
-          message: response.ok ? 'Success' : `Failed with status ${response.status}`,
-          response: responseData
-        };
-
-        if (response.ok) {
-          results.push(result);
-          console.log(`✅ Success for ${url}: ${response.status}`);
-        } else {
-          errors.push(result);
-          console.log(`❌ Error for ${url}: ${response.status}`);
-        }
-
-        return result;
-      } catch (error) {
-        const errorResult: ApiResult = {
-          url: url,
-          status: 0,
-          success: false,
-          message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
-        };
-        errors.push(errorResult);
-        console.log(`❌ Network error for ${url}:`, error);
-        return errorResult;
-      }
+      // Wait for all URLs in this batch to complete
+      const batchResults = await Promise.all(batchPromises);
+      console.log(`Completed batch ${batchIndex + 1}/${totalBatches}`);
+      return batchResults;
     });
 
-    // Wait for all requests to complete
-    await Promise.all(promises);
+    // Wait for all batches to complete
+    const allBatchResults = await Promise.all(allBatchPromises);
+    
+    // Flatten results and separate successes from errors
+    allBatchResults.flat().forEach(result => {
+      if (result.success) {
+        results.push(result);
+      } else {
+        errors.push(result);
+      }
+    });
 
     const response = NextResponse.json({
       success: true,
