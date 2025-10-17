@@ -1,0 +1,26 @@
+{
+	"name": "functions",
+	"$schema": "../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "functions",
+	"projectType": "application",
+	"tags": [],
+	"targets": {
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "functions/jest.config.js"
+			},
+			"configurations": {
+				"watch": {
+					"watch": true
+				},
+				"coverage": {
+					"watch": true,
+					"codeCoverage": true,
+					"coverageReporters": ["clover", "json", "lcov", "text"]
+				}
+			}
+		}
+	}
+}
