@@ -51,7 +51,12 @@ export async function POST() {
     "https://stag-app.csnonprod.com/launch-api/manage/deploy/68d3d182b756c333aef1a23b", 
     "https://stag-app.csnonprod.com/launch-api/manage/deploy/68d3cf79b756c333aef19b1a",
     "https://stag-app.csnonprod.com/launch-api/manage/deploy/68d3cf5cb756c333aef19acc", 
-    "https://stag-app.csnonprod.com/launch-api/manage/deploy/68d3d128b756c333aef1a16f"
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/68d3d128b756c333aef1a16f",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d976b22f36bd8cccf6c91",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d97a422f36bd8cccf6cec",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d97ce22f36bd8cccf6d51",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d980422f36bd8cccf6daf",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d982822f36bd8cccf6e0a"
   ];
   const results: ApiResult[] = [];
   const errors: ApiResult[] = [];
