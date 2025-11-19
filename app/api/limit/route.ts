@@ -56,7 +56,15 @@ export async function POST() {
     "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d97a422f36bd8cccf6cec",
     "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d97ce22f36bd8cccf6d51",
     "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d980422f36bd8cccf6daf",
-    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d982822f36bd8cccf6e0a"
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d982822f36bd8cccf6e0a",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d9e5c22f36bd8cccf77e2",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d9e9222f36bd8cccf7839",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d9eb922f36bd8cccf789f",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d9ef322f36bd8cccf791d",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d9f2822f36bd8cccf7976",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d9f5d22f36bd8cccf79da",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d9fc022f36bd8cccf7ab2",
+    "https://stag-app.csnonprod.com/launch-api/manage/deploy/691d9feb22f36bd8cccf7b26"
   ];
   const results: ApiResult[] = [];
   const errors: ApiResult[] = [];
