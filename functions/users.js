@@ -1,10 +1,13 @@
 // functions/users.js
 //trying the 
 export default function handler(request, response) {
+    const env = process.env.NEXTAUTH_URL;
+    console.log(env);
     const users = [
       {name: "Jack", age: "25"},
       {name: "Rick", age: "28"},
       {name: "Jane", age: "34"},
+      {name: "Aryan", value: env},
     ];
     response.status(200).send(users);
   }
